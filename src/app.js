@@ -19,12 +19,27 @@ app.use(
   })
 );
 
-app.use("*", (req, res, next) =>
+app.use("/hello", (req, res, next) =>
   res.send({
     data: {
       message: "Hello, world!",
     },
   })
 );
+
+app.use("/error", (req, res, next) => {
+  throw new Error("Intentional error.");
+});
+
+import { NotFoundError } from "#utils/errors/index.js";
+app.use("*", (req, res, next) => {
+  throw new NotFoundError("should return a 404 response", {
+    private: false,
+    code: "E3_0_just_a_test",
+  });
+});
+
+import { errorMiddleware } from "#middlewares/index.js";
+app.use(errorMiddleware);
 
 export { app };

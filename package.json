@@ -24,5 +24,11 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "imports": {
+    "#root/*": "./*",
+    "#utils/*.js": "./src/utils/*.js",
+    "#middlewares/*.js": "./src/middlewares/*.js",
+    "#configs/*.js": "./src/configs/*.js"
   }
 }
