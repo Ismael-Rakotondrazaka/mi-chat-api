@@ -23,12 +23,17 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.2"
   },
   "imports": {
     "#root/*": "./*",
     "#utils/*.js": "./src/utils/*.js",
     "#middlewares/*.js": "./src/middlewares/*.js",
-    "#configs/*.js": "./src/configs/*.js"
+    "#configs/*.js": "./src/configs/*.js",
+    "#routes/*.js": "./src/routes/*.js",
+    "#controllers/*.js": "./src/controllers/*.js",
+    "#models/*.js": "./src/models/*.js",
+    "#resources/*.js": "./src/resources/*.js"
   }
 }
