@@ -1,0 +1,8 @@
+const userConfig = {
+  MAX_FIRST_NAME_LENGTH: 20,
+  MAX_LAST_NAME_LENGTH: 20,
+  MAX_DESCRIPTION_LENGTH: 100,
+  MIN_PASSWORD_LENGTH: 8,
+};
+
+export { userConfig };
