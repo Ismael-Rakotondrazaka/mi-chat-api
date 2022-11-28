@@ -4,6 +4,12 @@ dotenv.config();
 import express from "express";
 const app = express();
 
+// synchronize the db
+import { sequelize } from "#models/index.js";
+await sequelize.sync({
+  logging: false,
+});
+
 import cors from "cors";
 app.use(
   cors({
@@ -18,6 +24,15 @@ app.use(
     extended: true,
   })
 );
+
+import { authRoutes } from "#routes/api/v1/auth/index.js";
+app.use("/api/v1/auth", authRoutes);
+
+import { tokenRoutes } from "#routes/api/v1/tokens/index.js";
+app.use("/api/v1/tokens", tokenRoutes);
+
+import { userRoutes } from "#routes/api/v1/users/index.js";
+app.use("/api/v1/users", userRoutes);
 
 app.use("/hello", (req, res, next) =>
   res.send({
