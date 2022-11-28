@@ -10,6 +10,7 @@ const validateDescription = (description) => {
   const trimmed = description.trim();
 
   const descriptionMaxLength = userConfig.MAX_DESCRIPTION_LENGTH;
+  console.log(descriptionMaxLength);
 
   if (description.length > descriptionMaxLength)
     throw new BadRequestError(

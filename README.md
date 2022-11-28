@@ -8,6 +8,8 @@
 | **E0** | General UnkownError                                       |
 | **E1** | General ServerError                                       |
 | E1_1   | trying to set 'fullName' of an User model                 |
+| E1_2   | trying to use inexistant source policy                    |
+| E1_3   | trying to use inexistant action policy                    |
 | **E2** | General BadRequestError                                   |
 | E2_1   | Field 'email' is missing                                  |
 | E2_2   | Field 'email' is not a string                             |
@@ -26,6 +28,7 @@
 | E2_15  | Field 'description' is not a string                       |
 | E2_16  | Field 'description' is more than 100 (default) characters |
 | E2_17  | Field 'refreshToken' is missing                           |
+| E2_18  | No change found when updating                             |
 | **E3** | General NotFoundError                                     |
 | **E4** | General ConflictError                                     |
 | E4_1   | 'email' is already in use                                 |

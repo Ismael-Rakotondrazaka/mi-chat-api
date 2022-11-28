@@ -7,11 +7,7 @@ const whoami = async (req, res, next) => {
   try {
     const authUserId = req.payload.user.id;
 
-    const authUser = await User.findOne({
-      where: {
-        id: authUserId,
-      },
-    });
+    const authUser = await User.findByPk(authUserId);
 
     if (!authUser) throw new UnauthorizedError();
 

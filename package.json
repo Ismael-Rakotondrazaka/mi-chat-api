@@ -34,6 +34,7 @@
     "#routes/*.js": "./src/routes/*.js",
     "#controllers/*.js": "./src/controllers/*.js",
     "#models/*.js": "./src/models/*.js",
-    "#resources/*.js": "./src/resources/*.js"
+    "#resources/*.js": "./src/resources/*.js",
+    "#policies/*.js": "./src/policies/*.js"
   }
 }

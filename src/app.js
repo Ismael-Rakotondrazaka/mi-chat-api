@@ -31,6 +31,9 @@ app.use("/api/v1/auth", authRoutes);
 import { tokenRoutes } from "#routes/api/v1/tokens/index.js";
 app.use("/api/v1/tokens", tokenRoutes);
 
+import { userRoutes } from "#routes/api/v1/users/index.js";
+app.use("/api/v1/users", userRoutes);
+
 app.use("/hello", (req, res, next) =>
   res.send({
     data: {
