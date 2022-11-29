@@ -36,12 +36,25 @@ if (dbConnection === "sqlite") {
 }
 
 import createUserModel from "./User.js";
-const User = createUserModel(sequelize, DataTypes);
-db[User.name] = User;
-
 import createRefreshTokenModel from "./RefreshToken.js";
+import createFriendshipModel from "./Friendship.js";
+import createFriendRequestModel from "./FriendRequest.js";
+import createConversationModel from "./Conversation.js";
+import createParticipantModel from "./Participant.js";
+
+const User = createUserModel(sequelize, DataTypes);
 const RefreshToken = createRefreshTokenModel(sequelize, DataTypes);
+const Friendship = createFriendshipModel(sequelize, DataTypes);
+const FriendRequest = createFriendRequestModel(sequelize, DataTypes);
+const Conversation = createConversationModel(sequelize, DataTypes);
+const Participant = createParticipantModel(sequelize, DataTypes);
+
+db[User.name] = User;
 db[RefreshToken.name] = RefreshToken;
+db[Friendship.name] = Friendship;
+db[FriendRequest.name] = FriendRequest;
+db[Conversation.name] = Conversation;
+db[Participant.name] = Participant;
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -53,4 +66,13 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export default db;
-export { sequelize, Sequelize, User, RefreshToken };
+export {
+  sequelize,
+  Sequelize,
+  User,
+  RefreshToken,
+  Friendship,
+  FriendRequest,
+  Conversation,
+  Participant,
+};

@@ -1,8 +1,7 @@
 "use strict";
 import { Model } from "sequelize";
-
 export default (sequelize, DataTypes) => {
-  class RefreshToken extends Model {
+  class Friendship extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,39 +9,42 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.RefreshToken.belongsTo(models.User, {
-        foreignKey: "user_id",
-      });
     }
   }
-  RefreshToken.init(
+  Friendship.init(
     {
-      token: {
-        field: "token",
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       userId: {
-        field: "user_id",
         type: DataTypes.INTEGER,
-        allowNull: false,
+        field: "user_id",
         references: {
           model: "users",
           key: "id",
         },
       },
-      expiresAt: {
-        field: "expires_at",
-        type: DataTypes.DATE,
+      friendId: {
+        type: DataTypes.INTEGER,
+        field: "friend_id",
+        references: {
+          model: "users",
+          key: "id",
+        },
+      },
+      conversationId: {
+        field: "conversation_id",
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "conversations",
+          key: "id",
+        },
       },
     },
     {
       sequelize,
-      modelName: "RefreshToken",
-      tableName: "refresh_tokens",
-      timestamps: false,
+      modelName: "Friendship",
+      tableName: "friendships",
+      timestamps: true,
     }
   );
-  return RefreshToken;
+  return Friendship;
 };

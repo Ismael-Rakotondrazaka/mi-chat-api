@@ -1,7 +1,7 @@
 import { User } from "#models/index.js";
 import { NotFoundError } from "#utils/errors/index.js";
 
-const userMiddleware = async function (req, res, next) {
+const userMiddleware = async (req, res, next) => {
   try {
     let { userId } = req.params;
 
