@@ -8,7 +8,7 @@ import { BadRequestError } from "#utils/errors/index.js";
 /* 
   description, profileImage can be updated
 */
-const updateUser = async function (req, res, next) {
+const updateUser = async (req, res, next) => {
   try {
     const authUserId = req.payload.user.id;
     const authUser = await User.findByPk(authUserId);
@@ -17,7 +17,7 @@ const updateUser = async function (req, res, next) {
     const { description } = req.body;
     const profileImage = req.file;
 
-    const auth = await isAuthorizedTo({
+    await isAuthorizedTo({
       source: "User",
       action: "update",
       user: authUser,

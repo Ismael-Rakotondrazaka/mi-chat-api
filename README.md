@@ -3,34 +3,41 @@
 ## Errors
 
 ### Error code
-| code   | Description                                               |
-| ------ | --------------------------------------------------------- |
-| **E0** | General UnkownError                                       |
-| **E1** | General ServerError                                       |
-| E1_1   | trying to set 'fullName' of an User model                 |
-| E1_2   | trying to use inexistant source policy                    |
-| E1_3   | trying to use inexistant action policy                    |
-| **E2** | General BadRequestError                                   |
-| E2_1   | Field 'email' is missing                                  |
-| E2_2   | Field 'email' is not a string                             |
-| E2_3   | Field 'email' is an invalid email address                 |
-| E2_4   | Field 'password' is missing                               |
-| E2_5   | Field 'password' is not a string                          |
-| E2_6   | Field 'password' is less than 8 (default) characters      |
-| E2_7   | Field 'firstName' is missing                              |
-| E2_8   | Field 'firstName' is not a string                         |
-| E2_9   | Field 'firstName' is more than 20 (default) characters    |
-| E2_10  | Field 'lastName' is missing                               |
-| E2_11  | Field 'lastName' is not a string                          |
-| E2_12  | Field 'lastName' is more than 20 (default) characters     |
-| E2_13  | Field 'passwordValidation' is missing                     |
-| E2_14  | Field 'passwordValidation' is different of 'password'     |
-| E2_15  | Field 'description' is not a string                       |
-| E2_16  | Field 'description' is more than 100 (default) characters |
-| E2_17  | Field 'refreshToken' is missing                           |
-| E2_18  | No change found when updating                             |
-| **E3** | General NotFoundError                                     |
-| **E4** | General ConflictError                                     |
-| E4_1   | 'email' is already in use                                 |
-| **E5** | General UnauthorizedError                                 |
-| **E6** | General ForbiddenError                                    |
+| code   | Description                                                                       |
+| ------ | --------------------------------------------------------------------------------- |
+| **E0** | General UnkownError                                                               |
+| **E1** | General ServerError                                                               |
+| E1_1   | trying to set 'fullName' of an User model                                         |
+| E1_2   | trying to use inexistant source policy                                            |
+| E1_3   | trying to use inexistant action policy                                            |
+| **E2** | General BadRequestError                                                           |
+| E2_1   | Field 'email' is missing                                                          |
+| E2_2   | Field 'email' is not a string                                                     |
+| E2_3   | Field 'email' is an invalid email address                                         |
+| E2_4   | Field 'password' is missing                                                       |
+| E2_5   | Field 'password' is not a string                                                  |
+| E2_6   | Field 'password' is less than 8 (default) characters                              |
+| E2_7   | Field 'firstName' is missing                                                      |
+| E2_8   | Field 'firstName' is not a string                                                 |
+| E2_9   | Field 'firstName' is more than 20 (default) characters                            |
+| E2_10  | Field 'lastName' is missing                                                       |
+| E2_11  | Field 'lastName' is not a string                                                  |
+| E2_12  | Field 'lastName' is more than 20 (default) characters                             |
+| E2_13  | Field 'passwordValidation' is missing                                             |
+| E2_14  | Field 'passwordValidation' is different of 'password'                             |
+| E2_15  | Field 'description' is not a string                                               |
+| E2_16  | Field 'description' is more than 100 (default) characters                         |
+| E2_17  | Field 'refreshToken' is missing                                                   |
+| E2_18  | No change found when updating                                                     |
+| E2_19  | Field 'userId' is required                                                        |
+| E2_20  | Field 'userId' is in a bad format                                                 |
+| E2_21  | Field user with 'userId' as id does not exist                                     |
+| **E3** | General NotFoundError                                                             |
+| **E4** | General ConflictError                                                             |
+| E4_1   | 'email' is already in use                                                         |
+| E4_2   | Trying to send friend request to itself                                           |
+| E4_3   | Trying to send a friend request to a friend                                       |
+| E4_4   | Already have a friend request from the target user when creating a friend request |
+| E4_5   | Already sent a friend request to the target user when creating a friend request   |
+| **E5** | General UnauthorizedError                                                         |
+| **E6** | General ForbiddenError                                                            |

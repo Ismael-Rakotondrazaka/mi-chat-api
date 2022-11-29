@@ -1,4 +1,4 @@
-function createErrorResponse(error) {
+const createErrorResponse = (error) => {
   return {
     error: {
       message: error.getMessage(),
@@ -8,6 +8,6 @@ function createErrorResponse(error) {
       dateTime: error.getDateTime(),
     },
   };
-}
+};
 
 export { createErrorResponse };

@@ -11,7 +11,39 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // relation between User and RefreshToken
       models.User.hasMany(models.RefreshToken, {
+        foreignKey: "user_id",
+      });
+
+      // relation between User and User (Friends)
+      models.User.belongsToMany(models.User, {
+        as: "Friends",
+        through: models.Friendship,
+        foreignKey: "user_id",
+        otherKey: "friend_id",
+      });
+
+      // relation between User and FriendRequest
+      models.User.hasMany(models.FriendRequest, {
+        foreignKey: "receiver_id",
+      });
+      models.User.hasMany(models.FriendRequest, {
+        foreignKey: "sender_id",
+      });
+
+      // relation between User and Conversation
+      models.User.belongsToMany(models.Conversation, {
+        as: "Conversations",
+        through: models.Participant,
+        foreignKey: "user_id",
+        otherKey: "conversation_id",
+      });
+
+      // relation between User and Participant (participation)
+      models.User.hasMany(models.Participant, {
+        as: "Participations",
         foreignKey: "user_id",
       });
     }
