@@ -2,10 +2,12 @@ import { ServerError } from "#utils/errors/index.js";
 
 import userPolicy from "./userPolicy.js";
 import friendRequestPolicy from "./friendRequestPolicy.js";
+import friendPolicy from "./friendPolicy.js";
 
 const SOURCE_POLICY = {
   User: userPolicy,
   FriendRequest: friendRequestPolicy,
+  Friend: friendPolicy,
 };
 
 const isAuthorizedTo = (

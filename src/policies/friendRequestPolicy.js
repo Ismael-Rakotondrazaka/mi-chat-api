@@ -19,6 +19,8 @@ const update = (data) => {
   throw new ForbiddenError();
 };
 
-export default { destroy, update };
+const friendRequestPolicy = { destroy, update };
+
+export default friendRequestPolicy;
 
 export { destroy, update };
