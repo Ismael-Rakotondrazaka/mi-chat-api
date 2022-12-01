@@ -2,6 +2,7 @@ import { User, FriendRequest } from "#models/index.js";
 import { friendRequestResource } from "#resources/index.js";
 import { BadRequestError, ConflictError } from "#utils/errors/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { socketIO } from "#services/socketIO/index.js";
 
 const storeFriendRequest = async (req, res, next) => {
   try {
@@ -85,12 +86,14 @@ const storeFriendRequest = async (req, res, next) => {
     const targetFriendRequestResource =
       friendRequestResource(targetFriendRequest);
 
-    // TODO notify the target user about the new friend request too
-    return res.json(
-      createDataResponse({
-        friendRequest: targetFriendRequestResource,
-      })
-    );
+    const response = createDataResponse({
+      friendRequest: targetFriendRequestResource,
+    });
+
+    // we notify the target user about the new friend request
+    socketIO.to(targetUser.channelId).emit("friendRequests:store", response);
+
+    return res.json(response);
   } catch (error) {
     next(error);
   }

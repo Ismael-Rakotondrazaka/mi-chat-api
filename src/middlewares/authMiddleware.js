@@ -6,8 +6,12 @@ import { Op } from "sequelize";
 
 const authMiddleware = async (req, res, next) => {
   try {
-    // Authorization: "Bearer <token here>" expected
-    const token = (req.header("Authorization") || "").split(" ")[1];
+    // authorization: "Bearer <token here>" expected
+    const authHeader = req.headers.authorization || req.headers.Authorization;
+
+    if (!authHeader?.startsWith("Bearer ")) throw new ForbiddenError();
+
+    const token = authHeader.split(" ")[1];
 
     if (!token) throw new ForbiddenError();
 

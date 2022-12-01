@@ -1,5 +1,7 @@
 import { User, FriendRequest } from "#models/index.js";
 import { isAuthorizedTo } from "#policies/index.js";
+import { socketIO } from "#services/socketIO/index.js";
+import { createDataResponse } from "#utils/responses/index.js";
 
 const destroyFriendRequest = async (req, res, next) => {
   try {
@@ -18,7 +20,19 @@ const destroyFriendRequest = async (req, res, next) => {
 
     await targetFriendRequest.destroy();
 
-    // TODO notify the other user about the friendship destroyed
+    // notify the receiver user about the FR destroyed
+    const receiver = await User.findByPk(targetFriendRequest.receiverId, {
+      attributes: ["channelId"],
+    });
+    socketIO.to(receiver.channelId).emit(
+      "friendRequests:destroy",
+      createDataResponse({
+        friendRequest: {
+          id: targetFriendRequest.id,
+        },
+      })
+    );
+
     return res.sendStatus(204);
   } catch (error) {
     next(error);

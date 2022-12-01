@@ -35,6 +35,7 @@
     "#controllers/*.js": "./src/controllers/*.js",
     "#models/*.js": "./src/models/*.js",
     "#resources/*.js": "./src/resources/*.js",
-    "#policies/*.js": "./src/policies/*.js"
+    "#policies/*.js": "./src/policies/*.js",
+    "#services/*.js": "./src/services/*.js"
   }
 }
