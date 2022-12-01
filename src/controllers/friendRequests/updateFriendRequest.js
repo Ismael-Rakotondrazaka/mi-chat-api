@@ -7,6 +7,8 @@ import {
 } from "#models/index.js";
 import { isAuthorizedTo } from "#policies/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { friendResource } from "#resources/index.js";
+import { socketIO } from "#services/socketIO/index.js";
 
 import { Op } from "sequelize";
 import { nanoid } from "nanoid";
@@ -96,7 +98,58 @@ const updateFriendRequest = async (req, res, next) => {
       conversationId: targetConversationId,
     });
 
-    // TODO: notify the user about the new conversation and the new friendship
+    // notify the authUser that the FR is destroyed
+    socketIO.to(authUser.channelId).emit(
+      "friendRequests:destroy",
+      createDataResponse({
+        conversation: {
+          id: friendRequestId,
+        },
+      })
+    );
+
+    // send the targetUser infos to authUser
+    const authUserNewFriend = friendResource({
+      ...targetUser.dataValues,
+      Friendship: targetUserFriendship,
+    });
+
+    socketIO.to(authUser.channelId).emit(
+      "friends:store",
+      createDataResponse({
+        user: authUserNewFriend,
+      })
+    );
+
+    // notify the targetUser about his new friend (authUser)
+    const targetUserNewFriend = friendResource({
+      ...authUser.dataValues,
+      Friendship: authUserFriendship,
+    });
+    socketIO.to(targetUser.channelId).emit(
+      "friends:store",
+      createDataResponse({
+        user: targetUserNewFriend,
+      })
+    );
+
+    // send the conversationId to both targetUser and authUser channels
+    socketIO.to(authUser.channelId).emit(
+      "conversations:store",
+      createDataResponse({
+        conversation: {
+          id: targetConversationId,
+        },
+      })
+    );
+    socketIO.to(targetUser.channelId).emit(
+      "conversations:store",
+      createDataResponse({
+        conversation: {
+          id: targetConversationId,
+        },
+      })
+    );
 
     /*
       since the informations about a conversation are huge,

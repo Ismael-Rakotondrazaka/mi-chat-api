@@ -4,6 +4,7 @@ import { User } from "#models/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 import { validateDescription } from "#utils/strings/index.js";
 import { BadRequestError } from "#utils/errors/index.js";
+import { socketIO } from "#services/socketIO/index.js";
 
 /* 
   description, profileImage can be updated
@@ -47,11 +48,15 @@ const updateUser = async (req, res, next) => {
     } else if (changes.description) {
       await authUser.update(userParam);
 
-      return res.json(
-        createDataResponse({
-          user: userResource(authUser),
-        })
-      );
+      const response = createDataResponse({
+        user: userResource(authUser),
+      });
+
+      // send the update to the channel of authUser
+      socketIO.to(authUser.channelId).emit("users:update", response);
+
+      // also send the update to the one who made the request
+      return res.json(response);
     } else {
       throw new BadRequestError("No change found.", {
         code: "E2_18",
