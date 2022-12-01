@@ -9,6 +9,7 @@ const indexFriendRequest = async (req, res, next) => {
     const authUserId = req.payload.user.id;
     const authUser = await User.findByPk(authUserId);
 
+    // TODO add count query, which is also independent of limit
     let { limit, order, like } = req.query;
 
     let friendRequestsParams = {

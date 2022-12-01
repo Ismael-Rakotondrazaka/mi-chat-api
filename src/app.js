@@ -37,6 +37,9 @@ app.use("/api/v1/users", userRoutes);
 import { friendRequestRoutes } from "#routes/api/v1/friendrequests/index.js";
 app.use("/api/v1/friendrequests", friendRequestRoutes);
 
+import { friendRoutes } from "#routes/api/v1/friends/index.js";
+app.use("/api/v1/friends", friendRoutes);
+
 app.use("/hello", (req, res, next) =>
   res.send({
     data: {
