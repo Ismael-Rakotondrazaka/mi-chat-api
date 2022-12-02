@@ -7,7 +7,17 @@ const validateFirstName = (firstName) => {
       code: "E2_8",
     });
 
-  const trimmed = firstName.trim();
+  const formatted = firstName
+    .replace(/\s+/g, " ") // replace multiple whitespace with a single one
+    .trim(); // then trim it
+
+  if (!/^[\p{L}\p{M} ]+$/gu.test(formatted))
+    throw new Error(
+      "Invalid 'firstName'. It contains non-Unicode letters, numbers or special characters.",
+      {
+        code: "E2_22",
+      }
+    );
 
   const firstNameMaxLength = userConfig.MAX_FIRST_NAME_LENGTH;
 
@@ -19,7 +29,7 @@ const validateFirstName = (firstName) => {
       }
     );
 
-  return trimmed;
+  return formatted;
 };
 
 export { validateFirstName };
