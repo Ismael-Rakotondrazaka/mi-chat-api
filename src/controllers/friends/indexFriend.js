@@ -27,7 +27,6 @@ const indexFriend = async (req, res, next) => {
     if (like && (like + "").trim()) {
       const likeTrimmed = (like + "").trim();
 
-      // TODO update validation of firstName and lastName, because we forgot about the format and whitespace
       if (/^[\p{L}\p{M} ]+$/u.test(likeTrimmed)) {
         if (!messageParams.where) {
           messageParams.where = {};

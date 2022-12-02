@@ -9,8 +9,7 @@ const indexFriendRequest = async (req, res, next) => {
     const authUserId = req.payload.user.id;
     const authUser = await User.findByPk(authUserId);
 
-    // TODO add count query, which is also independent of limit
-    let { limit, order, like } = req.query;
+    let { limit, order, like, count } = req.query;
 
     let friendRequestsParams = {
       include: [
@@ -18,24 +17,25 @@ const indexFriendRequest = async (req, res, next) => {
           association: "Sender",
         },
       ],
-      where: {},
     };
 
     const maxLimit = 200;
 
     if (/^\d+$/.test(limit)) {
-      limit = parseInt(limit, 10);
+      limit = +limit;
       limit = limit < maxLimit ? limit : maxLimit;
       friendRequestsParams.limit = limit;
     }
 
-    if (!!order) {
-      friendRequestsParams.order =
-        order === "ASC" ? [["createdAt", "ASC"]] : [["createdAt", "DESC"]];
-    }
+    friendRequestsParams.order =
+      order === "ASC" ? [["createdAt", "ASC"]] : [["createdAt", "DESC"]];
 
-    if (like) {
-      if (/[\p{L}\p{M} -']+/u.test(like)) {
+    if (like && (like + "").trim()) {
+      if (/^[\p{L}\p{M} ]+$/u.test(like)) {
+        if (!friendRequestsParams.where) {
+          friendRequestsParams.where = {};
+        }
+
         friendRequestsParams.where[Op.or] = [
           {
             $first_name$: {
@@ -48,31 +48,42 @@ const indexFriendRequest = async (req, res, next) => {
             },
           },
         ];
-        const result = await authUser.getFriendRequests(friendRequestsParams);
-
-        return res.json(
-          createDataResponse({
-            friendRequests: friendRequestCollection(result),
-          })
-        );
       } else {
-        return res.json(
-          createDataResponse({
-            friendRequests: [],
-          })
-        );
+        //* like is in a bad format
+
+        const response = {
+          friendRequests: [],
+        };
+
+        if (count === true || count === "true") {
+          response.count = 0;
+        }
+
+        return res.json(createDataResponse(response));
       }
     }
 
-    const result = await authUser.getFriendRequests({
-      include: ["Sender"],
-    });
+    const result = await authUser.getFriendRequests(friendRequestsParams);
 
-    return res.json(
-      createDataResponse({
-        friendRequests: friendRequestCollection(result),
-      })
-    );
+    let response = {
+      friendRequests: friendRequestCollection(result),
+    };
+
+    if (count === true || count === "true") {
+      // we delete the limit because count is independent of limit
+      if (Object.hasOwnProperty.call(friendRequestsParams, "limit")) {
+        delete friendRequestsParams.limit;
+      }
+
+      // we only need the length, so we get the minimum informations
+      friendRequestsParams.attributes = ["id"];
+
+      const result = await authUser.getFriendRequests(friendRequestsParams);
+
+      response.count = result.length;
+    }
+
+    return res.json(createDataResponse(response));
   } catch (error) {
     next(error);
   }
