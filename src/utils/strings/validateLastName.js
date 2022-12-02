@@ -7,7 +7,15 @@ const validateLastName = (lastName) => {
       code: "E2_11",
     });
 
-  const trimmed = lastName.trim();
+  const formatted = lastName.replace(/\s+/g, " ").trim();
+
+  if (!/^[\p{L}\p{M} ]+$/gu.test(formatted))
+    throw new Error(
+      "Invalid 'lastName'. It contains non-Unicode letters, numbers or special characters.",
+      {
+        code: "E2_23",
+      }
+    );
 
   const lastNameMaxLength = userConfig.MAX_LAST_NAME_LENGTH;
 
@@ -19,7 +27,7 @@ const validateLastName = (lastName) => {
       }
     );
 
-  return trimmed;
+  return formatted;
 };
 
 export { validateLastName };

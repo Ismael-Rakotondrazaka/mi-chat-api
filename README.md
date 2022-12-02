@@ -3,9 +3,10 @@
 ## Errors
 
 ### Error code
+They are **not** arranged by topic or subject.
 | code   | Description                                                                       |
 | ------ | --------------------------------------------------------------------------------- |
-| **E0** | General UnkownError                                                               |
+| **E0** | General UnknownError                                                              |
 | **E1** | General ServerError                                                               |
 | E1_1   | trying to set 'fullName' of an User model                                         |
 | E1_2   | trying to use inexistant source policy                                            |
@@ -32,6 +33,8 @@
 | E2_19  | Field 'userId' is required                                                        |
 | E2_20  | Field 'userId' is in a bad format                                                 |
 | E2_21  | Field user with 'userId' as id does not exist                                     |
+| E2_22  | Field 'firstName' contains non-Unicode letters, numbers or special characters     |
+| E2_23  | Field 'lastName' contains non-Unicode letters, numbers or special characters      |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
