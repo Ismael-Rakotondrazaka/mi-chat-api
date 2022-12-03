@@ -1,1 +1,4 @@
 export * from "./updateUser.js";
+export * from "./showUser.js";
+export * from "./indexUser.js";
+export * from "./indexUserFriend.js";
