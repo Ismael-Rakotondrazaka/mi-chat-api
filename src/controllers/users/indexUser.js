@@ -6,7 +6,7 @@ import { Op } from "sequelize";
 import jwt from "jsonwebtoken";
 
 const indexUser = async (req, res, next) => {
-  let { limit, order, like, count } = req.query;
+  let { limit, order, like, count, mutual } = req.query;
 
   let userParams = {
     where: {},
@@ -92,6 +92,16 @@ const indexUser = async (req, res, next) => {
       }
     }
 
+    if (
+      mutual &&
+      (mutual + "").trim() &&
+      (mutual === true || mutual === "true")
+    ) {
+      mutual = true;
+    } else {
+      mutual = false;
+    }
+
     // we check if the user is authenticated
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if (authHeader?.startsWith("Bearer ")) {
@@ -125,7 +135,7 @@ const indexUser = async (req, res, next) => {
                 where: {
                   id: authUser.id,
                 },
-                required: false,
+                required: mutual,
               },
             ];
           }
