@@ -109,11 +109,9 @@ const updateFriendRequest = async (req, res, next) => {
     );
 
     // send the targetUser infos to authUser
-    const authUserNewFriend = friendResource({
-      ...targetUser.dataValues,
-      Friendship: targetUserFriendship,
-    });
-
+    // ! we add explicitly a new property, so DON'T save it
+    targetUser.Friendship = targetUserFriendship;
+    const authUserNewFriend = friendResource(targetUser);
     socketIO.to(authUser.channelId).emit(
       "friends:store",
       createDataResponse({
@@ -122,10 +120,9 @@ const updateFriendRequest = async (req, res, next) => {
     );
 
     // notify the targetUser about his new friend (authUser)
-    const targetUserNewFriend = friendResource({
-      ...authUser.dataValues,
-      Friendship: authUserFriendship,
-    });
+    // ! we add explicitly a new property, so DON'T save it
+    authUser.Friendship = authUserFriendship;
+    const targetUserNewFriend = friendResource(authUser);
     socketIO.to(targetUser.channelId).emit(
       "friends:store",
       createDataResponse({

@@ -17,10 +17,9 @@ const indexUser = async (req, res, next) => {
 
     const users = result.map((value) => {
       if (value.Friends?.length === 1) {
-        return friendResource({
-          ...value.dataValues,
-          Friendship: value.Friends[0].Friendship,
-        });
+        // ! we add explicitly a new property, so DON'T save it
+        value.Friendship = value.Friends[0].Friendship;
+        return friendResource(value);
       } else {
         let user = userResource(value);
 

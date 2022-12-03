@@ -52,10 +52,9 @@ const showUser = async (req, res, next) => {
     });
 
     if (friendshipTargetAuthUser.length > 0) {
-      result = friendResource({
-        ...targetUser.dataValues,
-        Friendship: friendshipTargetAuthUser[0].Friendship,
-      });
+      // ! we add explicitly a new property, so DON'T save it
+      targetUser.Friendship = friendshipTargetAuthUser[0].Friendship;
+      result = friendResource(targetUser);
     } else {
       result = userResource(targetUser);
 
@@ -69,10 +68,9 @@ const showUser = async (req, res, next) => {
       let friendObject;
 
       if (friend.Friends.length === 1) {
-        friendObject = friendResource({
-          ...friend.dataValues,
-          Friendship: friend.Friends.at(0).Friendship,
-        });
+        // ! we add explicitly a new property, so DON'T save it
+        friend.Friendship = friend.Friends.at(0).Friendship;
+        friendObject = friendResource(friend);
       } else {
         friendObject = userResource(friend);
 
