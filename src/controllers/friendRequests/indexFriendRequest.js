@@ -31,7 +31,9 @@ const indexFriendRequest = async (req, res, next) => {
       order === "ASC" ? [["createdAt", "ASC"]] : [["createdAt", "DESC"]];
 
     if (like && (like + "").trim()) {
-      if (/^[\p{L}\p{M} ]+$/u.test(like)) {
+      const likeTrimmed = (like + "").trim();
+
+      if (/^[\p{L}\p{M} ]+$/u.test(likeTrimmed)) {
         if (!friendRequestsParams.where) {
           friendRequestsParams.where = {};
         }
@@ -39,12 +41,12 @@ const indexFriendRequest = async (req, res, next) => {
         friendRequestsParams.where[Op.or] = [
           {
             $first_name$: {
-              [Op.substring]: like,
+              [Op.substring]: likeTrimmed,
             },
           },
           {
             $last_name$: {
-              [Op.substring]: like,
+              [Op.substring]: likeTrimmed,
             },
           },
         ];
