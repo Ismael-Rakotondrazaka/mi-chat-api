@@ -3,11 +3,13 @@ import { ServerError } from "#utils/errors/index.js";
 import userPolicy from "./userPolicy.js";
 import friendRequestPolicy from "./friendRequestPolicy.js";
 import friendPolicy from "./friendPolicy.js";
+import conversationPolicy from "./conversationPolicy.js";
 
 const SOURCE_POLICY = {
   User: userPolicy,
   FriendRequest: friendRequestPolicy,
   Friend: friendPolicy,
+  Conversation: conversationPolicy,
 };
 
 const isAuthorizedTo = (

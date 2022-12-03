@@ -41,6 +41,9 @@ import createFriendshipModel from "./Friendship.js";
 import createFriendRequestModel from "./FriendRequest.js";
 import createConversationModel from "./Conversation.js";
 import createParticipantModel from "./Participant.js";
+import createMessageModel from "./Message.js";
+import createViewerModel from "./Viewer.js";
+import createGroupConversationLeftModel from "./GroupConversationLeft.js";
 
 const User = createUserModel(sequelize, DataTypes);
 const RefreshToken = createRefreshTokenModel(sequelize, DataTypes);
@@ -48,6 +51,12 @@ const Friendship = createFriendshipModel(sequelize, DataTypes);
 const FriendRequest = createFriendRequestModel(sequelize, DataTypes);
 const Conversation = createConversationModel(sequelize, DataTypes);
 const Participant = createParticipantModel(sequelize, DataTypes);
+const Message = createMessageModel(sequelize, DataTypes);
+const Viewer = createViewerModel(sequelize, DataTypes);
+const GroupConversationLeft = createGroupConversationLeftModel(
+  sequelize,
+  DataTypes
+);
 
 db[User.name] = User;
 db[RefreshToken.name] = RefreshToken;
@@ -55,6 +64,9 @@ db[Friendship.name] = Friendship;
 db[FriendRequest.name] = FriendRequest;
 db[Conversation.name] = Conversation;
 db[Participant.name] = Participant;
+db[Message.name] = Message;
+db[Viewer.name] = Viewer;
+db[GroupConversationLeft.name] = GroupConversationLeft;
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -75,4 +87,7 @@ export {
   FriendRequest,
   Conversation,
   Participant,
+  Message,
+  Viewer,
+  GroupConversationLeft,
 };

@@ -46,6 +46,26 @@ export default (sequelize, DataTypes) => {
         as: "Participations",
         foreignKey: "user_id",
       });
+
+      // relations between User and Message
+      models.User.belongsToMany(models.Message, {
+        as: "Messages",
+        through: models.Viewer,
+        foreignKey: "user_id",
+        otherKey: "message_id",
+      });
+
+      // relation between User and Viewer
+      models.User.hasMany(models.Viewer, {
+        as: "MessagesViewed",
+        foreignKey: "user_id",
+      });
+
+      // relations between User and GroupConversationLeft
+      models.User.hasMany(models.GroupConversationLeft, {
+        as: "GroupConversationsLeft",
+        foreignKey: "user_id",
+      });
     }
   }
   User.init(
