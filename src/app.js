@@ -40,6 +40,9 @@ app.use("/api/v1/friendrequests", friendRequestRoutes);
 import { friendRoutes } from "#routes/api/v1/friends/index.js";
 app.use("/api/v1/friends", friendRoutes);
 
+import { conversationRoutes } from "#routes/api/v1/conversations/index.js";
+app.use("/api/v1/conversations", conversationRoutes);
+
 app.use("/hello", (req, res, next) =>
   res.send({
     data: {
