@@ -4,12 +4,14 @@ import userPolicy from "./userPolicy.js";
 import friendRequestPolicy from "./friendRequestPolicy.js";
 import friendPolicy from "./friendPolicy.js";
 import conversationPolicy from "./conversationPolicy.js";
+import participantPolicy from "./participantPolicy.js";
 
 const SOURCE_POLICY = {
   User: userPolicy,
   FriendRequest: friendRequestPolicy,
   Friend: friendPolicy,
   Conversation: conversationPolicy,
+  Participant: participantPolicy,
 };
 
 const isAuthorizedTo = (

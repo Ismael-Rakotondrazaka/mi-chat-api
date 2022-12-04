@@ -26,4 +26,7 @@ conversationRoutes.delete(
   destroyConversation
 );
 
+import { participantRoutes } from "./participants/index.js";
+conversationRoutes.use("/:conversationId/participants", participantRoutes);
+
 export { conversationRoutes };
