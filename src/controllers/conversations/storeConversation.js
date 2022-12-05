@@ -23,11 +23,11 @@ const storeConversation = async (req, res, next) => {
     const FIELDS_REQUIRED = [
       {
         name: "groupName",
-        code: "E2_",
+        code: "E2_24",
       },
       {
         name: "participants",
-        code: "E2_",
+        code: "E2_25",
       },
     ];
 
@@ -65,7 +65,7 @@ const storeConversation = async (req, res, next) => {
       tempParticipantsId = participants.split(",");
     } else {
       throw new BadRequestError("Field 'participants' is in a bad format.", {
-        code: "E2_",
+        code: "E2_26",
       });
     }
 
@@ -77,7 +77,7 @@ const storeConversation = async (req, res, next) => {
       throw new BadRequestError(
         "Id in field 'participants' are in a bad format.",
         {
-          code: "E2_",
+          code: "E2_27",
         }
       );
 
@@ -86,7 +86,7 @@ const storeConversation = async (req, res, next) => {
     // check if the participantsId contains authUserId
     if (participantsId.includes(authUserId))
       throw new BadRequestError("Field 'participants' contains auth user id.", {
-        code: "E2_",
+        code: "E2_28",
       });
 
     // check if participantsId has the minimum required length
@@ -98,7 +98,10 @@ const storeConversation = async (req, res, next) => {
       throw new BadRequestError(
         `Field 'participants' doesn't contain enough user id. ${
           conversationConfig.MIN_GROUP_PARTICIPANT_COUNT - 1
-        } is the minimum required length.`
+        } is the minimum required length.`,
+        {
+          code: "E2_35",
+        }
       );
 
     // check if Ids of participantsId exist
@@ -115,7 +118,7 @@ const storeConversation = async (req, res, next) => {
       throw new BadRequestError(
         "Users in field 'participants' does not exist.",
         {
-          code: "E2_",
+          code: "E2_29",
         }
       );
 
@@ -134,7 +137,7 @@ const storeConversation = async (req, res, next) => {
       throw new BadRequestError(
         "Users in field 'participants' are not friends with auth user.",
         {
-          code: "E2_",
+          code: "E2_30",
         }
       );
 

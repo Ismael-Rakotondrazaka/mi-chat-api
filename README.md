@@ -29,12 +29,29 @@ They are **not** arranged by topic or subject.
 | E2_15  | Field 'description' is not a string                                               |
 | E2_16  | Field 'description' is more than 100 (default) characters                         |
 | E2_17  | Field 'refreshToken' is missing                                                   |
-| E2_18  | No change found when updating                                                     |
+| E2_18  | No change found                                                                   |
 | E2_19  | Field 'userId' is required                                                        |
 | E2_20  | Field 'userId' is in a bad format                                                 |
 | E2_21  | Field user with 'userId' as id does not exist                                     |
 | E2_22  | Field 'firstName' contains non-Unicode letters, numbers or special characters     |
 | E2_23  | Field 'lastName' contains non-Unicode letters, numbers or special characters      |
+| E2_24  | Field 'groupName' is missing                                                      |
+| E2_25  | Field 'participants' is missing                                                   |
+| E2_26  | Field 'participants' is in a bad format                                           |
+| E2_27  | One or more id in field 'participants' are in a bad format                        |
+| E2_28  | Field 'participants' contains auth user id                                        |
+| E2_29  | User with id in field 'participants' does not exist                               |
+| E2_30  | User with id in field 'participants' are not friends of the auth user             |
+| E2_31  | Field 'description' (of conversation) is not a string                             |
+| E2_32  | Field 'description' (of conversation) is more than 100 (default) characters       |
+| E2_33  | Field 'groupName' is not a string                                                 |
+| E2_34  | Field 'groupName' is more than 40 (default) characters                            |
+| E2_35  | Field 'participants' does not contain enough user id                              |
+| E2_36  | Field 'role' is missing                                                           |
+| E2_37  | Field 'role' is other than 'participant' or 'admin'                               |
+| E2_38  | Trying to downgrade an admin of a conversation                                    |
+| E2_39  | Field 'nickname' is not a string                                                  |
+| E2_40  | Field 'nickname' is more than 20 (default) characters                             |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |

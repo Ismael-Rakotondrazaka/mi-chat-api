@@ -59,14 +59,14 @@ const updateParticipant = async (req, res, next) => {
     if (targetConversation.type === "group") {
       if (!role)
         throw new BadRequestError("Field 'role' is required.", {
-          code: "E2_",
+          code: "E2_36",
         });
 
       if (!["participant", "admin"].includes(role))
         throw new BadRequestError(
           "Field 'role' can only be 'participant' or 'admin'.",
           {
-            code: "E2_",
+            code: "E2_37",
           }
         );
 
@@ -74,7 +74,7 @@ const updateParticipant = async (req, res, next) => {
         throw new BadRequestError(
           "A participant with role 'admin' can not be downgraded to 'participant'.",
           {
-            code: "E2_",
+            code: "E2_38",
           }
         );
 
@@ -86,7 +86,7 @@ const updateParticipant = async (req, res, next) => {
 
     if (!Object.values(changes).some((val) => val === true))
       throw new BadRequestError("No change found.", {
-        code: "E2_",
+        code: "E2_18",
       });
 
     await targetParticipant.update(participantParams);
