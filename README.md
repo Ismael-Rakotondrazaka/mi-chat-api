@@ -59,5 +59,6 @@ They are **not** arranged by topic or subject.
 | E4_3   | Trying to send a friend request to a friend                                       |
 | E4_4   | Already have a friend request from the target user when creating a friend request |
 | E4_5   | Already sent a friend request to the target user when creating a friend request   |
+| E4_6   | Trying to add a participant to a conversation where he is already a member        |
 | **E5** | General UnauthorizedError                                                         |
 | **E6** | General ForbiddenError                                                            |
