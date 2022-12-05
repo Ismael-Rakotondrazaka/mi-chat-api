@@ -43,7 +43,7 @@ const updateConversation = async (req, res, next) => {
 
     if (!groupName) {
       throw new BadRequestError("Field 'groupName' is required.", {
-        code: "E2_",
+        code: "E2_24",
       });
     }
     groupName = validateConversationName(groupName);
@@ -65,7 +65,7 @@ const updateConversation = async (req, res, next) => {
 
     if (Object.values(changes).every((val) => val === false))
       throw new BadRequestError("No change found.", {
-        code: "E2_",
+        code: "E2_18",
       });
 
     if (changes.profileImage) {
