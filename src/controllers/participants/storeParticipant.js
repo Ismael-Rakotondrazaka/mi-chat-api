@@ -27,7 +27,7 @@ const storeParticipant = async (req, res, next) => {
 
     if (!participants)
       throw new BadRequestError("Field 'participants' is required.", {
-        code: "E2_",
+        code: "E2_25",
       });
 
     /*
@@ -50,7 +50,7 @@ const storeParticipant = async (req, res, next) => {
       tempParticipantsId = participants.split(",");
     } else {
       throw new BadRequestError("Field 'participants' is in a bad format.", {
-        code: "E2_",
+        code: "E2_26",
       });
     }
 
@@ -62,7 +62,7 @@ const storeParticipant = async (req, res, next) => {
       throw new BadRequestError(
         "Id in field 'participants' are in a bad format.",
         {
-          code: "E2_",
+          code: "E2_27",
         }
       );
 
@@ -71,13 +71,16 @@ const storeParticipant = async (req, res, next) => {
     // check if the participantsId contains authUserId
     if (participantsId.includes(authUserId))
       throw new BadRequestError("Field 'participants' contains auth user id.", {
-        code: "E2_",
+        code: "E2_28",
       });
 
     // check if participantsId has the minimum required length (1 here)
     if (participantsId.length < 1)
       throw new BadRequestError(
-        `Field 'participants' doesn't contain enough user id. 1 is the minimum required length.`
+        `Field 'participants' doesn't contain enough user id. 1 is the minimum required length.`,
+        {
+          code: "E2_35",
+        }
       );
 
     // check if Ids of participantsId exist
@@ -94,7 +97,7 @@ const storeParticipant = async (req, res, next) => {
       throw new BadRequestError(
         "Users in field 'participants' does not exist.",
         {
-          code: "E2_",
+          code: "E2_29",
         }
       );
 
@@ -113,7 +116,7 @@ const storeParticipant = async (req, res, next) => {
       throw new BadRequestError(
         "Users in field 'participants' are not friends with auth user.",
         {
-          code: "E2_",
+          code: "E2_30",
         }
       );
 
@@ -124,6 +127,7 @@ const storeParticipant = async (req, res, next) => {
       },
     });
     if (oldParticipants.length !== 0)
+      // TODO change to conflict Error
       throw new BadRequestError(
         "One or more users in 'participants' are already members of the conversation.",
         {
