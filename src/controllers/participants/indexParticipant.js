@@ -8,8 +8,6 @@ import {
 import { isAuthorizedTo } from "#policies/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 
-import { Op } from "sequelize";
-
 const indexParticipant = async (req, res, next) => {
   try {
     const authUserId = req.payload.user.id;
@@ -32,19 +30,11 @@ const indexParticipant = async (req, res, next) => {
     let result = [];
 
     if (targetConversation.type === "personal") {
-      const participantsFetched = await targetConversation.getParticipants({
-        where: {
-          // id: {
-          //   [Op.ne]: authUser.id,
-          // },
-        },
-      });
+      const participantsFetched = await targetConversation.getParticipants();
 
       const converserId = participantsFetched.find(
         (participant) => participant.id !== authUserId
       ).id;
-
-      //   console.log(converserId);
 
       const friendFetched = await authUser.getFriends({
         where: {
@@ -52,15 +42,9 @@ const indexParticipant = async (req, res, next) => {
         },
       });
 
-      //   const isConverserFriend = friendFetched
-
-      //   console.log(friendFetched[0].Friendship);
-
       // if they are not friends, they still participants, but need to send null as participations
       if (friendFetched.length === 1) {
         result = participantsFetched.map((participant) => {
-          //   console.log(participant);
-
           if (participant.id === converserId) {
             participant.Friendship = friendFetched[0].Friendship;
             return {
