@@ -1,5 +1,5 @@
 "use strict";
-export async function up(queryInterface, Sequelize) {
+export const up = async (queryInterface, Sequelize) => {
   await queryInterface.createTable("group_conversations_left", {
     id: {
       allowNull: false,
@@ -46,7 +46,7 @@ export async function up(queryInterface, Sequelize) {
       type: Sequelize.DATE,
     },
   });
-}
-export async function down(queryInterface, Sequelize) {
+};
+export const down = async (queryInterface, Sequelize) => {
   await queryInterface.dropTable("group_conversations_left");
-}
+};
