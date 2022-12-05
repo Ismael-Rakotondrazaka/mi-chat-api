@@ -50,6 +50,8 @@ They are **not** arranged by topic or subject.
 | E2_36  | Field 'role' is missing                                                           |
 | E2_37  | Field 'role' is other than 'participant' or 'admin'                               |
 | E2_38  | Trying to downgrade an admin of a conversation                                    |
+| E2_39  | Field 'nickname' is not a string                                                  |
+| E2_40  | Field 'nickname' is more than 20 (default) characters                             |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |

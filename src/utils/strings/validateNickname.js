@@ -4,7 +4,7 @@ import { BadRequestError } from "#utils/errors/index.js";
 const validateNickname = (nickname) => {
   if (typeof nickname !== "string")
     throw new BadRequestError("Field 'nickname' must be a string.", {
-      code: "E2_",
+      code: "E2_39",
     });
 
   const trimmed = nickname.trim();
@@ -13,7 +13,10 @@ const validateNickname = (nickname) => {
 
   if (nickname.length > maxNicknameLength) {
     throw new BadRequestError(
-      `Invalid 'nickname'. ${maxNicknameLength} is the maximum allowed for nicknames.`
+      `Invalid 'nickname'. ${maxNicknameLength} is the maximum allowed for nicknames.`,
+      {
+        code: "E2_40",
+      }
     );
   }
 
