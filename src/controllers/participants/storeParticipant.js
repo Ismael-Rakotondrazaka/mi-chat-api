@@ -1,5 +1,5 @@
 import { User, Conversation, GroupConversationLeft } from "#models/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { BadRequestError, ConflictError } from "#utils/errors/index.js";
 import { socketIO } from "#services/socketIO/index.js";
 import { isAuthorizedTo } from "#policies/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
@@ -127,11 +127,10 @@ const storeParticipant = async (req, res, next) => {
       },
     });
     if (oldParticipants.length !== 0)
-      // TODO change to conflict Error
-      throw new BadRequestError(
+      throw new ConflictError(
         "One or more users in 'participants' are already members of the conversation.",
         {
-          code: "E2_",
+          code: "E4_6",
         }
       );
 
