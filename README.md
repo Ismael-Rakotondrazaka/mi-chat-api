@@ -46,6 +46,7 @@ They are **not** arranged by topic or subject.
 | E2_32  | Field 'description' (of conversation) is more than 100 (default) characters       |
 | E2_33  | Field 'groupName' is not a string                                                 |
 | E2_34  | Field 'groupName' is more than 40 (default) characters                            |
+| E2_35  | Field 'participants' does not contain enough user id                              |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
