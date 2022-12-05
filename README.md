@@ -44,6 +44,8 @@ They are **not** arranged by topic or subject.
 | E2_30  | User with id in field 'participants' are not friends of the auth user             |
 | E2_31  | Field 'description' (of conversation) is not a string                             |
 | E2_32  | Field 'description' (of conversation) is more than 100 (default) characters       |
+| E2_33  | Field 'groupName' is not a string                                                 |
+| E2_34  | Field 'groupName' is more than 40 (default) characters                            |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
