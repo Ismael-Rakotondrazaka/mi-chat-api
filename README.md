@@ -29,7 +29,7 @@ They are **not** arranged by topic or subject.
 | E2_15  | Field 'description' is not a string                                               |
 | E2_16  | Field 'description' is more than 100 (default) characters                         |
 | E2_17  | Field 'refreshToken' is missing                                                   |
-| E2_18  | No change found when updating                                                     |
+| E2_18  | No change found                                                                   |
 | E2_19  | Field 'userId' is required                                                        |
 | E2_20  | Field 'userId' is in a bad format                                                 |
 | E2_21  | Field user with 'userId' as id does not exist                                     |
@@ -47,6 +47,9 @@ They are **not** arranged by topic or subject.
 | E2_33  | Field 'groupName' is not a string                                                 |
 | E2_34  | Field 'groupName' is more than 40 (default) characters                            |
 | E2_35  | Field 'participants' does not contain enough user id                              |
+| E2_36  | Field 'role' is missing                                                           |
+| E2_37  | Field 'role' is other than 'participant' or 'admin'                               |
+| E2_38  | Trying to downgrade an admin of a conversation                                    |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
