@@ -98,7 +98,10 @@ const storeConversation = async (req, res, next) => {
       throw new BadRequestError(
         `Field 'participants' doesn't contain enough user id. ${
           conversationConfig.MIN_GROUP_PARTICIPANT_COUNT - 1
-        } is the minimum required length.`
+        } is the minimum required length.`,
+        {
+          code: "E2_35",
+        }
       );
 
     // check if Ids of participantsId exist
