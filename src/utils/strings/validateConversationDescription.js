@@ -6,7 +6,7 @@ const validateConversationDescription = (description) => {
     throw new BadRequestError(
       "Field 'description' (of conversation) must be a string.",
       {
-        code: "E2_",
+        code: "E2_31",
       }
     );
 
@@ -18,7 +18,7 @@ const validateConversationDescription = (description) => {
     throw new BadRequestError(
       `Invalid 'description'. ${descriptionMaxLength} characters long is the maximum allowed for conversation's description.`,
       {
-        code: "E2_",
+        code: "E2_32",
       }
     );
 
