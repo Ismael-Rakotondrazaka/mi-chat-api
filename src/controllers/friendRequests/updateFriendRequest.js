@@ -9,9 +9,9 @@ import { isAuthorizedTo } from "#policies/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 import { friendResource } from "#resources/index.js";
 import { socketIO } from "#services/socketIO/index.js";
+import { createRandomString } from "#utils/strings/index.js";
 
 import { Op } from "sequelize";
-import { nanoid } from "nanoid";
 
 // updating the FR == accepting the FR
 const updateFriendRequest = async (req, res, next) => {
@@ -76,7 +76,7 @@ const updateFriendRequest = async (req, res, next) => {
       // we crate a new conversation
       targetConversation = await Conversation.create({
         type: "personal",
-        channelId: nanoid(),
+        channelId: createRandomString(),
       });
 
       await targetConversation.addParticipants([authUser, targetUser]);

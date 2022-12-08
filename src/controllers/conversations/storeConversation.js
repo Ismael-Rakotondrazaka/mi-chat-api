@@ -3,13 +3,13 @@ import { BadRequestError } from "#utils/errors/index.js";
 import {
   validateConversationName,
   validateConversationDescription,
+  createRandomString,
 } from "#utils/strings/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 import { conversationConfig } from "#configs/index.js";
 import { socketIO } from "#services/socketIO/index.js";
 
 import { Op } from "sequelize";
-import { nanoid } from "nanoid";
 
 //* here we store a group conversation, since personal is created when accepting a friendRequest
 const storeConversation = async (req, res, next) => {
@@ -145,7 +145,7 @@ const storeConversation = async (req, res, next) => {
     // TODO if profileImage exist, upload it. Then update the imageUrl of this conversation
     let targetConversation = await Conversation.create({
       name: groupName,
-      channelId: nanoid(),
+      channelId: createRandomString(),
       type: "group",
     });
 
