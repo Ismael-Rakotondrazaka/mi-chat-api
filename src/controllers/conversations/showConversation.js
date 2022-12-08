@@ -15,6 +15,7 @@ import { isAuthorizedTo } from "#policies/index.js";
 
 import { Op } from "sequelize";
 
+// some fields depend on the user who send request: latestMessage, unreadMessageCount
 const showConversation = async (req, res, next) => {
   try {
     const authUserId = req.payload.user.id;
@@ -164,6 +165,25 @@ const showConversation = async (req, res, next) => {
     ) => {
       let targetConversationToExpose = conversationResource(targetConversation);
 
+      const unreadMessagesCount = await Viewer.count({
+        include: [
+          {
+            association: "Message",
+            where: {
+              conversationId: targetConversation.id,
+            },
+          },
+        ],
+        where: {
+          [Op.and]: {
+            userId: authUser.id,
+            unread: true,
+          },
+        },
+      });
+
+      targetConversationToExpose.unreadMessagesCount = unreadMessagesCount;
+
       const authUserParticipantFetched = (
         await targetConversation.getParticipants({
           where: {
@@ -237,6 +257,25 @@ const showConversation = async (req, res, next) => {
       targetConversationToExpose.id = targetConversation.id;
       targetConversationToExpose.type = "group";
 
+      const unreadMessagesCount = await Viewer.count({
+        include: [
+          {
+            association: "Message",
+            where: {
+              conversationId: targetConversation.id,
+            },
+          },
+        ],
+        where: {
+          [Op.and]: {
+            userId: authUser.id,
+            unread: true,
+          },
+        },
+      });
+
+      targetConversationToExpose.unreadMessagesCount = unreadMessagesCount;
+
       let latestMessageFetched = await Viewer.findOne({
         include: [
           {
@@ -252,7 +291,7 @@ const showConversation = async (req, res, next) => {
         where: {
           [Op.and]: {
             userId: authUser.id,
-            "$Message.created_at$": {
+            "$Message.createdAt$": {
               [Op.lte]: targetConversationLeft.createdAt,
             },
           },
