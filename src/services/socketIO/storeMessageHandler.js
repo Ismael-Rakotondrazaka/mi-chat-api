@@ -1,9 +1,9 @@
 import { Conversation, User, Message } from "#models/index.js";
 import { isAuthorizedTo } from "#policies/index.js";
 import { messageResource } from "#resources/index.js";
-import { messageConfig } from "#configs/index.js";
 import { BadRequestError } from "#utils/errors/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { validateMessage } from "#utils/strings/index.js";
 
 const storeMessageHandler = async (socketIO, socket, payload) => {
   try {
@@ -34,6 +34,14 @@ const storeMessageHandler = async (socketIO, socket, payload) => {
       }
     );
 
+    if (!targetConversation)
+      throw new BadRequestError(
+        "The conversation with 'conversationId' as id does not exist.",
+        {
+          code: "E2_47",
+        }
+      );
+
     await isAuthorizedTo({
       user: authUser,
       action: "store",
@@ -46,34 +54,7 @@ const storeMessageHandler = async (socketIO, socket, payload) => {
         code: "E2_41",
       });
 
-    if (typeof content !== "string")
-      throw new BadRequestError(
-        "Field 'content' of message with type 'text' must be a string.",
-        {
-          code: "E2_42",
-        }
-      );
-
-    const trimmed = content.trim();
-
-    if (trimmed.length === 0)
-      throw new BadRequestError(
-        "Field 'content' of message cannot be an empty string.",
-        {
-          code: "E2_43",
-        }
-      );
-
-    const maxMessageLength = messageConfig.MAX_MESSAGE_LENGTH;
-    if (trimmed.length > maxMessageLength)
-      throw new BadRequestError(
-        `Invalid 'content' of message with type 'text'. ${maxMessageLength} characters long is the maximum allowed.`,
-        {
-          code: "E2_44",
-        }
-      );
-
-    content = trimmed;
+    content = validateMessage(content);
 
     const targetMessageCreated = await Message.create({
       conversationId: targetConversationId,
