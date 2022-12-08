@@ -5,3 +5,4 @@ export * from "./friendRequests/index.js";
 export * from "./friends/index.js";
 export * from "./conversations/index.js";
 export * from "./participants/index.js";
+export * from "./messages/index.js";

@@ -52,6 +52,10 @@ They are **not** arranged by topic or subject.
 | E2_38  | Trying to downgrade an admin of a conversation                                    |
 | E2_39  | Field 'nickname' is not a string                                                  |
 | E2_40  | Field 'nickname' is more than 20 (default) characters                             |
+| E2_41  | Field 'content' is missing                                                        |
+| E2_42  | Field 'content' of message with type 'text' is not a string                       |
+| E2_43  | Field 'content' of message is an empty string                                     |
+| E2_44  | Field 'content' of message with type 'text' is more than 300 (default) characters |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |

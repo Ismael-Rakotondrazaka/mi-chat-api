@@ -29,4 +29,7 @@ conversationRoutes.delete(
 import { participantRoutes } from "./participants/index.js";
 conversationRoutes.use("/:conversationId/participants", participantRoutes);
 
+import { messageRoutes } from "./messages/index.js";
+conversationRoutes.use("/:conversationId/messages", messageRoutes);
+
 export { conversationRoutes };

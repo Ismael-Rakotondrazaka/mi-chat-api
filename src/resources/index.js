@@ -9,3 +9,4 @@ export * from "./messageResource.js";
 export * from "./senderResource.js";
 export * from "./participationResource.js";
 export * from "./participantCollection.js";
+export * from "./messageCollection.js";
