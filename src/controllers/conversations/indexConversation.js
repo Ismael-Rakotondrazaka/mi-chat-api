@@ -281,7 +281,7 @@ const indexConversation = async (req, res, next) => {
           where: {
             [Op.and]: {
               userId: authUser.id,
-              "$Message.created_at$": {
+              "$Message.createdAt$": {
                 [Op.lte]: groupConversationsLeft[index].createdAt,
               },
             },
