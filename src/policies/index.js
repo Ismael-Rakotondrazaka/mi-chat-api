@@ -5,6 +5,7 @@ import friendRequestPolicy from "./friendRequestPolicy.js";
 import friendPolicy from "./friendPolicy.js";
 import conversationPolicy from "./conversationPolicy.js";
 import participantPolicy from "./participantPolicy.js";
+import messagePolicy from "./messagePolicy.js";
 
 const SOURCE_POLICY = {
   User: userPolicy,
@@ -12,6 +13,7 @@ const SOURCE_POLICY = {
   Friend: friendPolicy,
   Conversation: conversationPolicy,
   Participant: participantPolicy,
+  Message: messagePolicy,
 };
 
 const isAuthorizedTo = (

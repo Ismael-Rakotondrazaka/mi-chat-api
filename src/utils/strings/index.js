@@ -6,3 +6,4 @@ export * from "./validateDescription.js";
 export * from "./validateConversationName.js";
 export * from "./validateConversationDescription.js";
 export * from "./validateNickname.js";
+export * from "./validateMessage.js";
