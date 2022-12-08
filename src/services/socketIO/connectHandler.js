@@ -61,7 +61,8 @@ const connectHandler = (socketIO, socket) => {
   );
 
   socket.on("disconnect", (reason) => {
-    destroyUserConnected(socket?.request?.session?.user?.id, socket.id);
+    destroyUserConnected(socket?.request?.payload?.user?.id, socket.id);
+
     socketIO.emit(
       "usersConnected:update",
       createDataResponse({
