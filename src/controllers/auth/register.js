@@ -8,11 +8,11 @@ import {
   validatePassword,
   validateEmail,
   validateDescription,
+  createRandomString,
 } from "#utils/strings/index.js";
 import { createAccessToken, createRefreshToken } from "#utils/tokens/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 
-import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 
 const register = async (req, res, next) => {
@@ -102,7 +102,7 @@ const register = async (req, res, next) => {
       lastName,
       email,
       password: hashedPassword,
-      channelId: nanoid(),
+      channelId: createRandomString(),
       description: description || null,
     };
 
