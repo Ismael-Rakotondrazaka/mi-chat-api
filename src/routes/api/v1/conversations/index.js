@@ -32,4 +32,7 @@ conversationRoutes.use("/:conversationId/participants", participantRoutes);
 import { messageRoutes } from "./messages/index.js";
 conversationRoutes.use("/:conversationId/messages", messageRoutes);
 
+import { unreadMessageRoutes } from "./unreadmessages/index.js";
+conversationRoutes.use("/:conversationId/unreadmessages", unreadMessageRoutes);
+
 export { conversationRoutes };

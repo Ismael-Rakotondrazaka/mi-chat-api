@@ -46,14 +46,6 @@ export default (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: true,
       },
-      createdAt: {
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        field: "updated_at",
-        type: DataTypes.DATE,
-      },
     },
     {
       sequelize,

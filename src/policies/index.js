@@ -6,6 +6,7 @@ import friendPolicy from "./friendPolicy.js";
 import conversationPolicy from "./conversationPolicy.js";
 import participantPolicy from "./participantPolicy.js";
 import messagePolicy from "./messagePolicy.js";
+import unreadMessagePolicy from "./unreadMessagePolicy.js";
 
 const SOURCE_POLICY = {
   User: userPolicy,
@@ -14,6 +15,7 @@ const SOURCE_POLICY = {
   Conversation: conversationPolicy,
   Participant: participantPolicy,
   Message: messagePolicy,
+  UnreadMessage: unreadMessagePolicy,
 };
 
 const isAuthorizedTo = (
