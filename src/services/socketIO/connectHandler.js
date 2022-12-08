@@ -1,5 +1,7 @@
 import { createDataResponse } from "#utils/responses/index.js";
 import { joinDefaultRooms } from "./joinDefaultRooms.js";
+import { joinRoomHandler } from "./joinRoomHandler.js";
+import { leaveRoomHandler } from "./leaveRoomHandler.js";
 import { storeMessageHandler } from "./storeMessageHandler.js";
 import {
   indexUserConnected,
@@ -33,6 +35,14 @@ const connectHandler = (socketIO, socket) => {
 
   socket.on("messages:store", (payload) => {
     storeMessageHandler(socketIO, socket, payload);
+  });
+
+  socket.on("conversations:join", (payload) => {
+    joinRoomHandler(socketIO, socket, payload);
+  });
+
+  socket.on("conversations:leave", (payload) => {
+    leaveRoomHandler(socketIO, socket, payload);
   });
 };
 
