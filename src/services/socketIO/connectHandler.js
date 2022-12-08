@@ -1,10 +1,10 @@
 import { createDataResponse } from "#utils/responses/index.js";
+import { joinDefaultRooms } from "./joinDefaultRooms.js";
+import { storeMessageHandler } from "./storeMessageHandler.js";
 
 // usersConnected are stored in this variable
 // TODO use cache
 let usersConnected = {};
-
-import { joinDefaultRooms } from "./joinDefaultRooms.js";
 
 // store user to usersConnected
 const storeUserConnected = (userId, socketId) => {
@@ -60,7 +60,7 @@ const connectHandler = (socketIO, socket) => {
     })
   );
 
-  socket.on("disconnect", (reason) => {
+  socket.on("disconnect", () => {
     destroyUserConnected(socket?.request?.payload?.user?.id, socket.id);
 
     socketIO.emit(
@@ -69,6 +69,10 @@ const connectHandler = (socketIO, socket) => {
         users: indexUserConnected(),
       })
     );
+  });
+
+  socket.on("messages:store", (payload) => {
+    storeMessageHandler(socketIO, socket, payload);
   });
 };
 
