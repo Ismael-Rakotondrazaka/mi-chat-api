@@ -9,16 +9,27 @@ import {
   updateConversation,
   destroyConversation,
 } from "#controllers/index.js";
+import { uploadImage } from "#services/multer/index.js";
 
 conversationRoutes.use("/:conversationId", conversationMiddleware);
 
 conversationRoutes.get("/", authMiddleware, indexConversation);
 
-conversationRoutes.post("/", authMiddleware, storeConversation);
+conversationRoutes.post(
+  "/",
+  authMiddleware,
+  uploadImage.single("profileImage"),
+  storeConversation
+);
 
 conversationRoutes.get("/:conversationId", authMiddleware, showConversation);
 
-conversationRoutes.put("/:conversationId", authMiddleware, updateConversation);
+conversationRoutes.put(
+  "/:conversationId",
+  authMiddleware,
+  uploadImage.single("profileImage"),
+  updateConversation
+);
 
 conversationRoutes.delete(
   "/:conversationId",

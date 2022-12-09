@@ -10,12 +10,18 @@ import {
   showMessage,
   destroyMessage,
 } from "#controllers/index.js";
+import { uploadImage } from "#services/multer/index.js";
 
 messageRoutes.use("/:messageId", messageMiddleware);
 
 messageRoutes.get("/", authMiddleware, indexMessage);
 
-messageRoutes.post("/", authMiddleware, storeMessage);
+messageRoutes.post(
+  "/",
+  authMiddleware,
+  uploadImage.single("content"),
+  storeMessage
+);
 
 messageRoutes.get("/:messageId", authMiddleware, showMessage);
 
