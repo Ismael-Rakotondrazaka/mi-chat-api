@@ -32,6 +32,11 @@ const destroyParticipant = async (req, res, next) => {
 
     await targetConversation.removeParticipant(targetParticipant);
 
+    targetConversation.changed("updatedAt", true);
+    await targetConversation.update({
+      updatedAt: new Date(),
+    });
+
     await GroupConversationLeft.create({
       conversationId: targetConversation.id,
       userId: targetParticipant.id,
@@ -43,7 +48,7 @@ const destroyParticipant = async (req, res, next) => {
     const response = {
       conversation: {
         id: targetConversationId,
-        updatedAt: targetConversation.updatedAt, // TODO: add updatedAt to response for each resource updated
+        updatedAt: targetConversation.updatedAt,
         participants: [targetParticipantId],
       },
     };

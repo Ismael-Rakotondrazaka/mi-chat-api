@@ -91,6 +91,15 @@ const updateParticipant = async (req, res, next) => {
 
     await targetParticipant.update(participantParams);
 
+    /* we manually update the updatedAt of the targetConversation */
+
+    // * this is necessary to trigger the update, otherwise the update will be ignored
+    targetConversation.changed("updatedAt", true);
+    // ! the result updatedAt is not exactly the same as the provided, there is a latence of some milliseconds
+    await targetConversation.update({
+      updatedAt: targetParticipant.updatedAt,
+    });
+
     /*
     because we don't know the friendship of the targetParticipant and users who listen the channel,
     we just send the conversationId, and the participantId
@@ -99,6 +108,7 @@ const updateParticipant = async (req, res, next) => {
     const response = {
       conversation: {
         id: targetConversationId,
+        updatedAt: new Date(),
         participants: [targetParticipantId],
       },
     };
