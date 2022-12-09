@@ -1,33 +1,33 @@
 import { bucket } from "./bucket.js";
 
-const uploadFile = (
-  buffer,
-  options = {
+const uploadFile = (buffer, options) => {
+  const uploadFileOptions = {
     destination: "",
     contentType: "application/octet-stream",
     isPrivate: true,
     onFinish: async () => {},
     onError: () => {},
-  }
-) => {
-  const blob = bucket.file(options.destination);
+    ...options,
+  };
+
+  const blob = bucket.file(uploadFileOptions.destination);
 
   const blobStream = blob
     .createWriteStream({
       metadata: {
-        contentType: options.contentType,
+        contentType: uploadFileOptions.contentType,
       },
     })
-    .on("error", options.onError)
+    .on("error", uploadFileOptions.onError)
     .on("finish", async () => {
       try {
-        if (!options.isPrivate) {
+        if (!uploadFileOptions.isPrivate) {
           await blob.makePublic();
         }
 
-        await options.onFinish();
+        await uploadFileOptions.onFinish();
       } catch (error) {
-        options.onError(error);
+        uploadFileOptions.onError(error);
       }
     });
 

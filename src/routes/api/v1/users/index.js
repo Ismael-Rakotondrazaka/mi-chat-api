@@ -3,6 +3,7 @@ import {
   showUser,
   indexUserFriend,
   indexUser,
+  showUserFile,
 } from "#controllers/index.js";
 import { authMiddleware, userMiddleware } from "#middlewares/index.js";
 import { uploadImage } from "#services/multer/index.js";
@@ -25,5 +26,7 @@ userRoutes.put(
 userRoutes.get("/:userId", showUser);
 
 userRoutes.get("/:userId/friends", indexUserFriend);
+
+userRoutes.get("/:userId/files/:filename", showUserFile);
 
 export { userRoutes };
