@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 const storage = new Storage({
   projectId: process.env.GCS_BUCKET_NAME,
-  keyFilename: resolve(__dirname, "../../../secrets/GSCServiceAccount.json"),
+  keyFilename: resolve(__dirname, "../../../secrets/GCSServiceAccount.json"),
 });
 
 export { storage };

@@ -1,13 +1,13 @@
-import { bucket } from "./bucket";
+import { bucket } from "./bucket.js";
 
 const uploadFile = (
   buffer,
   options = {
-    destination: "/",
+    destination: "",
     contentType: "application/octet-stream",
     isPrivate: true,
     onFinish: async () => {},
-    onError: async () => {},
+    onError: () => {},
   }
 ) => {
   const blob = bucket.file(options.destination);
