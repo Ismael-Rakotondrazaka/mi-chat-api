@@ -49,7 +49,6 @@ const storeMessage = async (req, res, next) => {
         then we upload the file, because we need the id of the message while precessing it
         and we update the content of the message
       */
-      // TODO upload the file message
       const mimetype = contentFile.mimetype;
       const originalName = contentFile.originalname;
       const filename = createFilename(originalName, mimetype);

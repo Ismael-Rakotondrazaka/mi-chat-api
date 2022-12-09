@@ -144,7 +144,6 @@ const storeConversation = async (req, res, next) => {
       );
 
     // we create a new conversation, and we create participants later
-    // TODO if profileImage exist, upload it. Then update the imageUrl of this conversation
     let targetConversation = await Conversation.create({
       name: groupName,
       channelId: createRandomString(),
