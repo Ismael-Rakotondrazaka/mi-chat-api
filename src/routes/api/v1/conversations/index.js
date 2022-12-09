@@ -8,6 +8,7 @@ import {
   storeConversation,
   updateConversation,
   destroyConversation,
+  showConversationFile,
 } from "#controllers/index.js";
 import { uploadImage } from "#services/multer/index.js";
 
@@ -35,6 +36,12 @@ conversationRoutes.delete(
   "/:conversationId",
   authMiddleware,
   destroyConversation
+);
+
+conversationRoutes.get(
+  "/:conversationId/files/:filename",
+  authMiddleware,
+  showConversationFile
 );
 
 import { participantRoutes } from "./participants/index.js";
