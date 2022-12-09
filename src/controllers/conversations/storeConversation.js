@@ -4,10 +4,12 @@ import {
   validateConversationName,
   validateConversationDescription,
   createRandomString,
+  createFilename,
 } from "#utils/strings/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
 import { conversationConfig } from "#configs/index.js";
 import { socketIO } from "#services/socketIO/index.js";
+import { uploadFile } from "#services/GCS/index.js";
 
 import { Op } from "sequelize";
 
@@ -142,7 +144,6 @@ const storeConversation = async (req, res, next) => {
       );
 
     // we create a new conversation, and we create participants later
-    // TODO if profileImage exist, upload it. Then update the imageUrl of this conversation
     let targetConversation = await Conversation.create({
       name: groupName,
       channelId: createRandomString(),
@@ -180,30 +181,56 @@ const storeConversation = async (req, res, next) => {
       ],
     });
 
-    // notify each participants infos about the new conversation
-    targetConversation.Participants.forEach((participant) => {
-      socketIO.to(participant.channelId).emit(
-        "conversations:store",
+    const spreadUpdates = () => {
+      // notify each participants infos about the new conversation
+      targetConversation.Participants.forEach((participant) => {
+        socketIO.to(participant.channelId).emit(
+          "conversations:store",
+          createDataResponse({
+            conversation: {
+              id: targetConversation.id,
+            },
+          })
+        );
+      });
+
+      /*
+            since the informations about a conversation are huge,
+            we prefer to send back only the conversationId
+            the client need to fetch those informations in another request
+           */
+      res.json(
         createDataResponse({
           conversation: {
             id: targetConversation.id,
           },
         })
       );
-    });
+    };
 
-    /*
-      since the informations about a conversation are huge,
-      we prefer to send back only the conversationId
-      the client need to fetch those informations in another request
-     */
-    return res.json(
-      createDataResponse({
-        conversation: {
-          id: targetConversation.id,
+    if (profileImage) {
+      const mimetype = profileImage.mimetype;
+      const originalName = profileImage.originalname;
+      const filename = createFilename(originalName, mimetype);
+      const imageUrl = `/conversations/${targetConversation.id}/files/${filename}`;
+      const destination = `private/conversations/${targetConversation.id}/${filename}`;
+
+      uploadFile(profileImage.buffer, {
+        destination,
+        contentType: mimetype,
+        onFinish: async () => {
+          await targetConversation.update({
+            imageUrl: imageUrl,
+          });
+
+          spreadUpdates();
         },
-      })
-    );
+        onError: (err) => next(err),
+        isPrivate: true,
+      });
+    } else {
+      spreadUpdates();
+    }
   } catch (error) {
     next(error);
   }

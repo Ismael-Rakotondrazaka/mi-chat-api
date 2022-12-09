@@ -5,9 +5,11 @@ import { isAuthorizedTo } from "#policies/index.js";
 import {
   validateConversationDescription,
   validateConversationName,
+  createFilename,
 } from "#utils/strings/index.js";
 import { socketIO } from "#services/socketIO/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { uploadFile } from "#services/GCS/index.js";
 
 /**
  * update a group conversation, only the admin can do that
@@ -69,8 +71,32 @@ const updateConversation = async (req, res, next) => {
       });
 
     if (changes.profileImage) {
-      // TODO upload the file then update conversation
-      throw new ServerError("Not implemented yet.");
+      const mimetype = profileImage.mimetype;
+      const originalName = profileImage.originalname;
+      const filename = createFilename(originalName, mimetype);
+      const imageUrl = `/conversations/${targetConversation.id}/files/${filename}`;
+      const destination = `private/conversations/${targetConversation.id}/${filename}`;
+
+      conversationParams.imageUrl = imageUrl;
+
+      uploadFile(profileImage.buffer, {
+        destination,
+        contentType: mimetype,
+        onFinish: async () => {
+          await targetConversation.update(conversationParams);
+
+          const response = createDataResponse({
+            conversation: conversationResource(targetConversation),
+          });
+
+          socketIO
+            .to(targetConversation.channelId)
+            .emit("conversations:update", response);
+
+          return res.json(response);
+        },
+        onError: (err) => next(err),
+      });
     } else {
       await targetConversation.update(conversationParams);
 

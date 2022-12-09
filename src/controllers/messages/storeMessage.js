@@ -3,8 +3,10 @@ import { messageResource } from "#resources/index.js";
 import { socketIO } from "#services/socketIO/index.js";
 import { isAuthorizedTo } from "#policies/index.js";
 import { BadRequestError } from "#utils/errors/index.js";
-import { validateMessage } from "#utils/strings/index.js";
+import { validateMessage, createFilename } from "#utils/strings/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { uploadFile } from "#services/GCS/index.js";
+import { fileConfig } from "#configs/index.js";
 
 const storeMessage = async (req, res, next) => {
   try {
@@ -42,8 +44,84 @@ const storeMessage = async (req, res, next) => {
       });
 
     if (contentFile) {
-      // TODO upload the file message
-      throw new ServerError("Not implemented yet");
+      /* 
+        we create the message with a temp content
+        then we upload the file, because we need the id of the message while precessing it
+        and we update the content of the message
+      */
+      const mimetype = contentFile.mimetype;
+      const originalName = contentFile.originalname;
+      const filename = createFilename(originalName, mimetype);
+      const destination = `private/conversations/${targetConversationId}/messages/${filename}`;
+
+      let messageType = mimetype.split("/")[0];
+      const SHOWABLE_FILETYPE = ["image", "video"];
+      if (!SHOWABLE_FILETYPE.includes(messageType)) {
+        messageType = "file";
+      }
+      // we use a temp content
+      const FILETYPE_DEFAULT_URL = {
+        image: fileConfig.COULD_NOT_LOAD_IMAGE_URL,
+        video: fileConfig.COULD_NOT_LOAD_VIDEO_URL,
+      };
+      const tempContent =
+        FILETYPE_DEFAULT_URL[messageType] || fileConfig.COULD_NOT_LOAD_FILE_URL;
+
+      const messageParams = {
+        conversationId: targetConversationId,
+        content: tempContent,
+        senderId: authUserId,
+        type: messageType,
+      };
+
+      const targetMessageCreated = await Message.create(messageParams);
+
+      const content = `/conversations/${targetConversationId}/messages/${targetMessageCreated.id}/files/${filename}`;
+
+      uploadFile(contentFile.buffer, {
+        destination,
+        contentType: mimetype,
+        onFinish: async () => {
+          // re-fetch the message because we need the participation of the sender
+          let targetMessage = await Message.findByPk(targetMessageCreated.id, {
+            include: [
+              {
+                association: "Sender",
+                include: [
+                  {
+                    where: {
+                      conversationId: targetConversationId,
+                    },
+                    association: "Participations",
+                  },
+                ],
+              },
+            ],
+          });
+
+          await targetMessage.update({
+            content: content,
+          });
+
+          // we add viewers to the message
+          await targetMessageCreated.addViewers(
+            targetConversation.Participants
+          );
+
+          const result = messageResource(targetMessage);
+
+          const response = {
+            message: result,
+          };
+
+          socketIO
+            .to(targetConversation.channelId)
+            .emit("messages:store", createDataResponse(response));
+
+          res.json(createDataResponse(response));
+        },
+        onError: (err) => next(err),
+      });
     } else {
       content = validateMessage(content);
 

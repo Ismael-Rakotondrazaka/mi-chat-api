@@ -9,9 +9,11 @@ import {
   validateEmail,
   validateDescription,
   createRandomString,
+  createFilename,
 } from "#utils/strings/index.js";
 import { createAccessToken, createRefreshToken } from "#utils/tokens/index.js";
 import { createDataResponse } from "#utils/responses/index.js";
+import { uploadFile } from "#services/GCS/index.js";
 
 import bcrypt from "bcrypt";
 
@@ -106,16 +108,9 @@ const register = async (req, res, next) => {
       description: description || null,
     };
 
-    if (profileImage) {
-      // TODO upload file then create the user
-      return res.json(
-        createDataResponse({
-          message: "not implemented",
-        })
-      );
-    } else {
-      const targetUser = await User.create(targetUserParams);
+    const targetUser = await User.create(targetUserParams);
 
+    const sendResponse = async () => {
       const refreshTokenData = {
         user: {
           id: targetUser.id,
@@ -148,6 +143,30 @@ const register = async (req, res, next) => {
           },
         })
       );
+    };
+
+    if (profileImage) {
+      const mimetype = profileImage.mimetype;
+      const originalName = profileImage.originalname;
+      const filename = createFilename(originalName, mimetype);
+      const imageUrl = `/users/${targetUser.id}/files/${filename}`;
+      const destination = `public/users/${targetUser.id}/${filename}`;
+
+      uploadFile(profileImage.buffer, {
+        destination,
+        contentType: mimetype,
+        onFinish: async () => {
+          await targetUser.update({
+            imageUrl: imageUrl,
+          });
+
+          sendResponse();
+        },
+        onError: (err) => next(err),
+        isPrivate: false,
+      });
+    } else {
+      sendResponse();
     }
   } catch (error) {
     next(error);
