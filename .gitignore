@@ -134,3 +134,6 @@ dist
 
 # VSCodeCounter
 .VSCodeCounter
+
+# secret folder
+secrets
