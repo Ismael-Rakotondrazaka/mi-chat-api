@@ -103,6 +103,11 @@ const storeMessage = async (req, res, next) => {
             content: content,
           });
 
+          targetConversation.changed("updatedAt", true);
+          await targetConversation.update({
+            updatedAt: new Date(),
+          });
+
           // we add viewers to the message
           await targetMessageCreated.addViewers(
             targetConversation.Participants
@@ -111,7 +116,11 @@ const storeMessage = async (req, res, next) => {
           const result = messageResource(targetMessage);
 
           const response = {
-            message: result,
+            conversation: {
+              id: targetConversationId,
+              updatedAt: targetConversation.updatedAt,
+              message: result,
+            },
           };
 
           socketIO
@@ -152,13 +161,22 @@ const storeMessage = async (req, res, next) => {
         ],
       });
 
+      targetConversation.changed("updatedAt", true);
+      await targetConversation.update({
+        updatedAt: new Date(),
+      });
+
       // we add viewers to the message
       await targetMessageCreated.addViewers(targetConversation.Participants);
 
       const result = messageResource(targetMessage);
 
       const response = {
-        message: result,
+        conversation: {
+          id: targetConversationId,
+          updatedAt: targetConversation.updatedAt,
+          message: result,
+        },
       };
 
       socketIO

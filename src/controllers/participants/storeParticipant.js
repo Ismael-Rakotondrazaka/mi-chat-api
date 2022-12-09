@@ -160,9 +160,15 @@ const storeParticipant = async (req, res, next) => {
     // then we add new participants to the conversation
     await targetConversation.addParticipants(targetUsers);
 
+    targetConversation.changed("updatedAt", true);
+    await targetConversation.update({
+      updatedAt: new Date(),
+    });
+
     const response = {
       conversation: {
         id: targetConversationId,
+        updatedAt: targetConversation.updatedAt,
         participants: participantsId,
       },
     };
