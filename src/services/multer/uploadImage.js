@@ -1,5 +1,6 @@
 import { imageConfig } from "#configs/index.js";
-import { storage } from "./storage";
+import { storage } from "./storage.js";
+import { BadRequestError } from "#utils/errors/index.js";
 
 import multer from "multer";
 
@@ -10,7 +11,15 @@ const imageParam = {
       if (imageConfig.IMAGE_MIME_TYPES.includes(file.mimetype)) {
         cb(null, true);
       } else {
-        cb(null, false);
+        cb(
+          new BadRequestError(
+            "The file uploaded has not a valid image mimetype.",
+            {
+              code: "E2_48",
+            }
+          ),
+          false
+        );
       }
     } catch (error) {
       cb(error, false);
