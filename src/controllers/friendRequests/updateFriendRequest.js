@@ -152,12 +152,14 @@ const updateFriendRequest = async (req, res, next) => {
       since the informations about a conversation are huge,
       we prefer to send back only the conversationId
       the client need to fetch those informations in another request
+      But we send the new friend of authUser
      */
     return res.json(
       createDataResponse({
         conversation: {
           id: targetConversationId,
         },
+        user: authUserNewFriend,
       })
     );
   } catch (error) {
