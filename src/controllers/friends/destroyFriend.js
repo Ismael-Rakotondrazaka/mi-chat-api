@@ -21,15 +21,14 @@ const destroyFriend = async (req, res, next) => {
     await authUser.removeFriend(targetUser);
     await targetUser.removeFriend(authUser);
 
+    const authUserResponse = createDataResponse({
+      user: {
+        id: targetUser.id,
+      },
+    });
+
     // we notify both targetUser and authUser
-    socketIO.to(authUser.channelId).emit(
-      "friends:destroy",
-      createDataResponse({
-        user: {
-          id: targetUser.id,
-        },
-      })
-    );
+    socketIO.to(authUser.channelId).emit("friends:destroy", authUserResponse);
     socketIO.to(targetUser.channelId).emit(
       "friends:destroy",
       createDataResponse({
@@ -39,7 +38,7 @@ const destroyFriend = async (req, res, next) => {
       })
     );
 
-    return res.sendStatus(204);
+    return res.json(authUserResponse);
   } catch (error) {
     next(error);
   }
