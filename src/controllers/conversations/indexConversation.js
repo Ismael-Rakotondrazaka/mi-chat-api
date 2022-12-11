@@ -10,6 +10,7 @@ import {
   participationResource,
   userResource,
 } from "#resources/index.js";
+import { createDataResponse } from "#utils/responses/index.js";
 
 import { Op } from "sequelize";
 
@@ -361,7 +362,11 @@ const indexConversation = async (req, res, next) => {
 
     finalResult.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
-    return res.json(finalResult);
+    return res.json(
+      createDataResponse({
+        conversations: finalResult,
+      })
+    );
   } catch (error) {
     next(error);
   }
