@@ -43,17 +43,16 @@ const destroyConversation = async (req, res, next) => {
       },
     });
 
-    // notify auth users
-    socketIO.to(authUser.channelId).emit(
-      "conversations:destroy",
-      createDataResponse({
-        conversation: {
-          id: targetConversation.id,
-        },
-      })
-    );
+    const response = createDataResponse({
+      conversation: {
+        id: targetConversationId,
+      },
+    });
 
-    return res.sendStatus(204);
+    // notify auth users
+    socketIO.to(authUser.channelId).emit("conversations:destroy", response);
+
+    return res.json(response);
   } catch (error) {
     next(error);
   }

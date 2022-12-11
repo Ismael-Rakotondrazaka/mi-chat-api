@@ -24,16 +24,17 @@ const destroyFriendRequest = async (req, res, next) => {
     const receiver = await User.findByPk(targetFriendRequest.receiverId, {
       attributes: ["channelId"],
     });
-    socketIO.to(receiver.channelId).emit(
-      "friendRequests:destroy",
-      createDataResponse({
-        friendRequest: {
-          id: targetFriendRequest.id,
-        },
-      })
-    );
 
-    return res.sendStatus(204);
+    const response = createDataResponse({
+      friendRequest: {
+        id: targetFriendRequest.id,
+      },
+    });
+
+    socketIO.to(receiver.channelId).emit("friendRequests:destroy", response);
+
+    // and we also notify the requester, no matter if he is the sender or the receiver
+    return res.json(response);
   } catch (error) {
     next(error);
   }
