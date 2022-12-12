@@ -13,24 +13,40 @@ import {
 const connectHandler = (socketIO, socket) => {
   joinDefaultRooms(socketIO, socket);
 
-  storeUserConnected(socket.request.payload.user.id, socket.id);
+  const isNew = storeUserConnected(socket.request.payload.user.id, socket.id);
 
-  socketIO.emit(
-    "usersConnected:update",
-    createDataResponse({
-      users: indexUserConnected(),
-    })
-  );
-
-  socket.on("disconnect", () => {
-    destroyUserConnected(socket?.request?.payload?.user?.id, socket.id);
-
+  if (isNew) {
+    // if a new user is connected for the first time, we notify everyone
     socketIO.emit(
       "usersConnected:update",
       createDataResponse({
         users: indexUserConnected(),
       })
     );
+  } else {
+    // otherwise we notify only the new socket connected
+    socket.emit(
+      "usersConnected:update",
+      createDataResponse({
+        users: indexUserConnected(),
+      })
+    );
+  }
+
+  socket.on("disconnect", () => {
+    const isEmpty = destroyUserConnected(
+      socket?.request?.payload?.user?.id,
+      socket.id
+    );
+
+    if (isEmpty)
+      // if this socket was the last connected we notify the others user
+      socketIO.emit(
+        "usersConnected:update",
+        createDataResponse({
+          users: indexUserConnected(),
+        })
+      );
   });
 
   socket.on("messages:store", (payload) => {
