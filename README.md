@@ -59,7 +59,7 @@ They are **not** arranged by topic or subject.
 | E2_45  | Field 'conversationId' is missing                                                 |
 | E2_46  | Field 'conversationId' is in a bad format                                         |
 | E2_47  | Conversation with id 'conversationId' does not exist                              |
-| E2_48  | The file uploaded has not a valid image mimetype                                 |
+| E2_48  | The file uploaded has not a valid image mimetype                                  |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
@@ -70,3 +70,4 @@ They are **not** arranged by topic or subject.
 | E4_6   | Trying to add a participant to a conversation where he is already a member        |
 | **E5** | General UnauthorizedError                                                         |
 | **E6** | General ForbiddenError                                                            |
+| E6_1   | Auth check failed                                                                 |
