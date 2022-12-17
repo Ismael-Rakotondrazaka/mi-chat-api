@@ -1,5 +1,6 @@
 import { User } from "#models/index.js";
 import { ForbiddenError } from "#utils/errors/index.js";
+import { errorConfig } from "#configs/index.js";
 
 import jwt from "jsonwebtoken";
 import { Op } from "sequelize";
@@ -9,7 +10,10 @@ const authMiddleware = async (req, res, next) => {
     // authorization: "Bearer <token here>" expected
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    if (!authHeader?.startsWith("Bearer ")) throw new ForbiddenError();
+    if (!authHeader?.startsWith("Bearer "))
+      throw new ForbiddenError(errorConfig.DEFAULT_FORBIDDEN_ERROR_MESSAGE, {
+        code: "E6_1",
+      });
 
     const token = authHeader.split(" ")[1];
 
@@ -23,7 +27,9 @@ const authMiddleware = async (req, res, next) => {
       typeof decoded !== "object" ||
       typeof decoded === "string"
     )
-      throw new ForbiddenError();
+      throw new ForbiddenError(errorConfig.DEFAULT_FORBIDDEN_ERROR_MESSAGE, {
+        code: "E6_1",
+      });
 
     const targetUser = await User.findOne({
       where: {
@@ -35,7 +41,10 @@ const authMiddleware = async (req, res, next) => {
       attributes: ["id", "email"],
     });
 
-    if (!targetUser) throw new ForbiddenError();
+    if (!targetUser)
+      throw new ForbiddenError(errorConfig.DEFAULT_FORBIDDEN_ERROR_MESSAGE, {
+        code: "E6_1",
+      });
 
     /*
       we add the payload to the request object to mark as authenticated
@@ -53,7 +62,11 @@ const authMiddleware = async (req, res, next) => {
     req.payload = null;
 
     if (error instanceof jwt.JsonWebTokenError) {
-      next(new ForbiddenError());
+      next(
+        new ForbiddenError(errorConfig.DEFAULT_FORBIDDEN_ERROR_MESSAGE, {
+          code: "E6_1",
+        })
+      );
     } else {
       next(error);
     }
