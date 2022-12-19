@@ -43,6 +43,10 @@ const updateUser = async (req, res, next) => {
       userParam.description = validateDescription(description) || null;
     }
 
+    if (profileImage && profileImage !== authUser.imageUrl) {
+      changes.profileImage = true;
+    }
+
     if (!Object.values(changes).some((val) => val === true))
       throw new BadRequestError("No change found.", {
         code: "E2_18",
