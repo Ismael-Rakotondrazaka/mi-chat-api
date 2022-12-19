@@ -102,7 +102,7 @@ const updateFriendRequest = async (req, res, next) => {
     socketIO.to(authUser.channelId).emit(
       "friendRequests:destroy",
       createDataResponse({
-        conversation: {
+        friendRequest: {
           id: friendRequestId,
         },
       })
