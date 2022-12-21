@@ -254,6 +254,8 @@ const indexConversation = async (req, res, next) => {
       let result = conversationResource(conversation);
       result.id = conversation.conversationId;
       result.participation = null;
+      // ! add some property that a conversation have but missing in a groupConversationsLeft, like channelId, type
+      result.type = "group";
       return result;
     });
 
