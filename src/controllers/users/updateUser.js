@@ -40,7 +40,9 @@ const updateUser = async (req, res, next) => {
           description.trim() !== authUser.description))
     ) {
       changes.description = true;
-      userParam.description = validateDescription(description) || null;
+      userParam.description = description
+        ? validateDescription(description)
+        : null;
     }
 
     if (profileImage && profileImage !== authUser.imageUrl) {
