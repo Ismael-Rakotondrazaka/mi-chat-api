@@ -21,7 +21,7 @@ const showUser = async (req, res, next) => {
     /*
         we get with the targetUser with:
         - his friends,
-        - the friends of his friends (need them to filter friends in common of the authUser)
+        - the friendship between his friends and the auth user
       */
     const targetUser = await User.findByPk(targetUserId, {
       include: {
@@ -30,7 +30,7 @@ const showUser = async (req, res, next) => {
           association: "Friends",
           where: {
             "$Friends.Friends.id$": {
-              [Op.eq]: targetUserId,
+              [Op.eq]: authUserId,
             },
           },
           required: false,
@@ -123,7 +123,14 @@ const showUser = async (req, res, next) => {
     });
 
     result = userResource(targetUser);
-    result.friends = userCollection(targetUser.Friends);
+    // explicitly add a falsy friendship because the request is not authenticated
+    result.friends = userCollection(targetUser.Friends).map((user) => {
+      user.friendship = {
+        isFriend: false,
+      };
+
+      return user;
+    });
     result.friendRequest = null;
     result.friendship = {
       isFriend: false,
@@ -187,6 +194,7 @@ const showUser = async (req, res, next) => {
       })
     );
   } catch (error) {
+    console.log(error);
     /*
       we can have a jwt Error here, that means the auth is failed,
       but we don't want to send a forbidden response;
