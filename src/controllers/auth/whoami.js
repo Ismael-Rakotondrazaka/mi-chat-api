@@ -13,7 +13,11 @@ const whoami = async (req, res, next) => {
 
     return res.json(
       createDataResponse({
-        user: userResource(authUser),
+        user: {
+          ...userResource(authUser),
+          email: authUser.email,
+          updatedAt: authUser.updatedAt,
+        },
       })
     );
   } catch (error) {
