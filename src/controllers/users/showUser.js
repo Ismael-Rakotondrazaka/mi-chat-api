@@ -194,7 +194,6 @@ const showUser = async (req, res, next) => {
       })
     );
   } catch (error) {
-    console.log(error);
     /*
       we can have a jwt Error here, that means the auth is failed,
       but we don't want to send a forbidden response;
