@@ -22,10 +22,33 @@ npm run dev
 npm run start
 ```
 
-## Errors
+## Responses
+There are two types of responses with this api: **data** and **error**
 
-### Error code
-They are **not** arranged by topic or subject.
+### Data
+```js
+data: {
+    user: {
+        id: 1,
+        ...
+    },
+    ...
+}
+```
+
+### Error
+```js
+error: {
+    message: "The resource is not found.",
+    statusCode: 400,
+    statusText: "Not Found",
+    code: "E3",
+    dateTime: "2023-01-21T16:47:21.886Z",
+}
+```
+
+### Error codes
+They are **NOT** arranged by topic or subject.
 | code   | Description                                                                       |
 | ------ | --------------------------------------------------------------------------------- |
 | **E0** | General UnknownError                                                              |
