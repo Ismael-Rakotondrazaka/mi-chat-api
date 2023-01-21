@@ -61,6 +61,7 @@ They are **not** arranged by topic or subject.
 | E2_46  | Field 'conversationId' is in a bad format                                         |
 | E2_47  | Conversation with id 'conversationId' does not exist                              |
 | E2_48  | The file uploaded has not a valid image mimetype                                  |
+| E2_49  | Field 'database' is missing                                                       |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
