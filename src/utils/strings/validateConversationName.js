@@ -1,5 +1,5 @@
-import { conversationConfig } from "#configs/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { conversationConfig } from "../../configs/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 const validateConversationName = (groupName) => {
   if (typeof groupName !== "string")

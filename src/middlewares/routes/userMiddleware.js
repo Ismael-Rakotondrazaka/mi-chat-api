@@ -1,5 +1,5 @@
-import { User } from "#models/index.js";
-import { NotFoundError } from "#utils/errors/index.js";
+import { User } from "../../models/index.js";
+import { NotFoundError } from "../../utils/errors/index.js";
 
 const userMiddleware = async (req, res, next) => {
   try {

@@ -3,15 +3,15 @@ import {
   Conversation,
   Viewer,
   GroupConversationLeft,
-} from "#models/index.js";
+} from "../../models/index.js";
 import {
   messageResource,
   participationResource,
   conversationResource,
   userResource,
-} from "#resources/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
+} from "../../resources/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
 
 import { Op } from "sequelize";
 

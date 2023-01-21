@@ -1,4 +1,4 @@
-import { ForbiddenError } from "#utils/errors/index.js";
+import { ForbiddenError } from "../utils/errors/index.js";
 
 const viewAny = async (data) => {
   // user:User, through:Conversation

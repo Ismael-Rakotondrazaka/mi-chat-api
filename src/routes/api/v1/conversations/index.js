@@ -1,7 +1,10 @@
 import { Router } from "express";
 const conversationRoutes = Router();
 
-import { conversationMiddleware, authMiddleware } from "#middlewares/index.js";
+import {
+  conversationMiddleware,
+  authMiddleware,
+} from "../../../../middlewares/index.js";
 import {
   showConversation,
   indexConversation,
@@ -9,8 +12,8 @@ import {
   updateConversation,
   destroyConversation,
   showConversationFile,
-} from "#controllers/index.js";
-import { uploadImage } from "#services/multer/index.js";
+} from "../../../../controllers/index.js";
+import { uploadImage } from "../../../../services/multer/index.js";
 
 conversationRoutes.use("/:conversationId", conversationMiddleware);
 

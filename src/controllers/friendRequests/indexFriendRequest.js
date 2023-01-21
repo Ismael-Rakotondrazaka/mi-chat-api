@@ -1,6 +1,6 @@
-import { User } from "#models/index.js";
-import { friendRequestCollection } from "#resources/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User } from "../../models/index.js";
+import { friendRequestCollection } from "../../resources/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 

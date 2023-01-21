@@ -1,6 +1,6 @@
-import { User } from "#models/index.js";
-import { ForbiddenError } from "#utils/errors/index.js";
-import { errorConfig } from "#configs/index.js";
+import { User } from "../models/index.js";
+import { ForbiddenError } from "../utils/errors/index.js";
+import { errorConfig } from "../configs/index.js";
 
 import jwt from "jsonwebtoken";
 import { Op } from "sequelize";

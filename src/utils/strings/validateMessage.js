@@ -1,5 +1,5 @@
-import { messageConfig } from "#configs/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { messageConfig } from "../../configs/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 const validateMessage = (message) => {
   if (typeof message !== "string")

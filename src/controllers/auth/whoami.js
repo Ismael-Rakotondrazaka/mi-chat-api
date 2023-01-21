@@ -1,7 +1,7 @@
-import { User } from "#models/index.js";
-import { UnauthorizedError } from "#utils/errors/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { userResource } from "#resources/index.js";
+import { User } from "../../models/index.js";
+import { UnauthorizedError } from "../../utils/errors/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { userResource } from "../../resources/index.js";
 
 const whoami = async (req, res, next) => {
   try {

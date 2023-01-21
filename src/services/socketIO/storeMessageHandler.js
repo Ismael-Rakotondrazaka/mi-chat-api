@@ -1,9 +1,9 @@
-import { Conversation, User, Message } from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { messageResource } from "#resources/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { validateMessage } from "#utils/strings/index.js";
+import { Conversation, User, Message } from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { messageResource } from "../../resources/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { validateMessage } from "../../utils/strings/index.js";
 
 const storeMessageHandler = async (socketIO, socket, payload) => {
   try {

@@ -1,15 +1,15 @@
-import { User, Conversation } from "#models/index.js";
-import { conversationResource } from "#resources/index.js";
-import { BadRequestError, ServerError } from "#utils/errors/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
+import { User, Conversation } from "../../models/index.js";
+import { conversationResource } from "../../resources/index.js";
+import { BadRequestError, ServerError } from "../../utils/errors/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
 import {
   validateConversationDescription,
   validateConversationName,
   createFilename,
-} from "#utils/strings/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { uploadFile } from "#services/GCS/index.js";
+} from "../../utils/strings/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { uploadFile } from "../../services/GCS/index.js";
 
 /**
  * update a group conversation, only the admin can do that

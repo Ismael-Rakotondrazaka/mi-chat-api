@@ -1,5 +1,5 @@
-import { participantConfig } from "#configs/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { participantConfig } from "../../configs/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 const validateNickname = (nickname) => {
   if (typeof nickname !== "string")

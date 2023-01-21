@@ -1,10 +1,15 @@
-import { User, RefreshToken } from "#models/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { userResource } from "#resources/index.js";
-import { BadRequestError, UnauthorizedError } from "#utils/errors/index.js";
-import { authConfig } from "#configs/index.js";
-import { validateEmail, validatePassword } from "#utils/strings/index.js";
-import { createRefreshToken, createAccessToken } from "#utils/tokens/index.js";
+import { User, RefreshToken } from "../../models/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { userResource } from "../../resources/index.js";
+import {
+  BadRequestError,
+  UnauthorizedError,
+} from "../../utils/errors/index.js";
+import { validateEmail, validatePassword } from "../../utils/strings/index.js";
+import {
+  createRefreshToken,
+  createAccessToken,
+} from "../../utils/tokens/index.js";
 
 import bcrypt from "bcrypt";
 

@@ -3,7 +3,7 @@ dotenv.config();
 
 import { app } from "./app.js";
 
-import { socketIO } from "#services/socketIO/index.js";
+import { socketIO } from "./services/socketIO/index.js";
 import http from "http";
 const httpServer = http.createServer(app);
 

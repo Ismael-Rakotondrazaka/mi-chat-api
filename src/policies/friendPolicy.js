@@ -1,4 +1,4 @@
-import { ForbiddenError } from "#utils/errors/index.js";
+import { ForbiddenError } from "../utils/errors/index.js";
 
 const destroy = async (data) => {
   const { user, target } = data;

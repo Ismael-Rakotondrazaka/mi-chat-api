@@ -1,6 +1,6 @@
-import { User, Conversation, Viewer } from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User, Conversation, Viewer } from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 const indexUnreadMessage = async (req, res, next) => {
   try {

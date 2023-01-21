@@ -1,6 +1,6 @@
-import { Conversation, User } from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { Conversation, User } from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 // leaving a room, doesn't mean the user is not allowed to view it
 const leaveRoomHandler = async (socketIO, socket, payload) => {
