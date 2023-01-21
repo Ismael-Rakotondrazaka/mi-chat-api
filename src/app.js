@@ -46,6 +46,7 @@ app.use("/api/v1/conversations", conversationRoutes);
 import { adminDatabaseRoutes } from "#routes/api/v1/admin/databases/index.js";
 app.use("/api/v1/admin/databases", adminDatabaseRoutes);
 
+// this one can be used as health check
 app.use("/hello", (req, res, next) =>
   res.send({
     data: {
@@ -53,10 +54,6 @@ app.use("/hello", (req, res, next) =>
     },
   })
 );
-
-app.use("/error", (req, res, next) => {
-  throw new Error("Intentional error.");
-});
 
 import { NotFoundError } from "#utils/errors/index.js";
 app.use("*", (req, res, next) => {
