@@ -4,6 +4,24 @@ mi-chat is a free instant messaging web application. You can make friends and ch
 
 Live: [https://mi-chat.onrender.com](https://mi-chat.onrender.com), enjoy :wink:
 
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Production mode
+
+```sh
+npm run start
+```
+
 ## Errors
 
 ### Error code
