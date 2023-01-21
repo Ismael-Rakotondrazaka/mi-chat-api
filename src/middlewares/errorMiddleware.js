@@ -1,5 +1,5 @@
-import { GeneralError, UnknownError } from "#utils/errors/index.js";
-import { createErrorResponse } from "#utils/responses/index.js";
+import { GeneralError, UnknownError } from "../utils/errors/index.js";
+import { createErrorResponse } from "../utils/responses/index.js";
 
 const errorMiddleware = (err, req, res, next) => {
   if (err) {

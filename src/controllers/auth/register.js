@@ -1,7 +1,7 @@
-import { User, RefreshToken } from "#models/index.js";
-import { userResource } from "#resources/index.js";
-import { authConfig } from "#configs/index.js";
-import { BadRequestError, ConflictError } from "#utils/errors/index.js";
+import { User, RefreshToken } from "../../models/index.js";
+import { userResource } from "../../resources/index.js";
+import { authConfig } from "../../configs/index.js";
+import { BadRequestError, ConflictError } from "../../utils/errors/index.js";
 import {
   validateFirstName,
   validateLastName,
@@ -10,10 +10,10 @@ import {
   validateDescription,
   createRandomString,
   createFilename,
-} from "#utils/strings/index.js";
-import { createAccessToken, createRefreshToken } from "#utils/tokens/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { uploadFile } from "#services/GCS/index.js";
+} from "../../utils/strings/index.js";
+import { createAccessToken, createRefreshToken } from "../../utils/tokens/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { uploadFile } from "../../services/GCS/index.js";
 
 import bcrypt from "bcrypt";
 

@@ -1,7 +1,7 @@
-import { User, FriendRequest } from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User, FriendRequest } from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 const destroyFriendRequest = async (req, res, next) => {
   try {

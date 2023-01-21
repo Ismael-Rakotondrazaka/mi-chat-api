@@ -1,4 +1,4 @@
-import { User, Conversation } from "#models/index.js";
+import { User, Conversation } from "../../models/index.js";
 
 const joinDefaultRooms = async (socketIO, socket) => {
   const authUserId = socket.request.payload.user.id;

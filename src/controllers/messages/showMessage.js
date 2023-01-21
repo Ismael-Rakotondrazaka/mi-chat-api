@@ -3,10 +3,10 @@ import {
   GroupConversationLeft,
   User,
   Message,
-} from "#models/index.js";
-import { messageResource } from "#resources/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+} from "../../models/index.js";
+import { messageResource } from "../../resources/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 

@@ -1,5 +1,5 @@
-import { userConfig } from "#configs/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { userConfig } from "../../configs/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 const validatePassword = (password) => {
   if (typeof password !== "string")

@@ -4,12 +4,12 @@ import {
   Conversation,
   Friendship,
   Participant,
-} from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { friendResource } from "#resources/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { createRandomString } from "#utils/strings/index.js";
+} from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { friendResource } from "../../resources/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { createRandomString } from "../../utils/strings/index.js";
 
 import { Op } from "sequelize";
 

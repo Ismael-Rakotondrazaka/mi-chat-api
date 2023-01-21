@@ -3,14 +3,14 @@ import {
   Viewer,
   Conversation,
   GroupConversationLeft,
-} from "#models/index.js";
+} from "../../models/index.js";
 import {
   conversationResource,
   messageResource,
   participationResource,
   userResource,
-} from "#resources/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+} from "../../resources/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 

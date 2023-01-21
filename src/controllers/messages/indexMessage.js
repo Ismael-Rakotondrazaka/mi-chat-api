@@ -1,8 +1,8 @@
-import { Conversation, GroupConversationLeft, User } from "#models/index.js";
-import { messageCollection } from "#resources/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { Conversation, GroupConversationLeft, User } from "../../models/index.js";
+import { messageCollection } from "../../resources/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 

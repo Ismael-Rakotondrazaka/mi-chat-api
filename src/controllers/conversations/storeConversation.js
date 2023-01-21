@@ -1,15 +1,15 @@
-import { User, Conversation, Participant } from "#models/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { User, Conversation, Participant } from "../../models/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 import {
   validateConversationName,
   validateConversationDescription,
   createRandomString,
   createFilename,
-} from "#utils/strings/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { conversationConfig } from "#configs/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { uploadFile } from "#services/GCS/index.js";
+} from "../../utils/strings/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { conversationConfig } from "../../configs/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { uploadFile } from "../../services/GCS/index.js";
 
 import { Op } from "sequelize";
 

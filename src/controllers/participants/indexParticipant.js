@@ -1,12 +1,12 @@
-import { User, Conversation } from "#models/index.js";
+import { User, Conversation } from "../../models/index.js";
 import {
   participantCollection,
   userResource,
   friendResource,
   participationResource,
-} from "#resources/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+} from "../../resources/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 const indexParticipant = async (req, res, next) => {
   try {

@@ -1,5 +1,5 @@
-import { Conversation } from "#models/index.js";
-import { NotFoundError } from "#utils/errors/index.js";
+import { Conversation } from "../../models/index.js";
+import { NotFoundError } from "../../utils/errors/index.js";
 
 const conversationMiddleware = async (req, res, next) => {
   try {

@@ -3,11 +3,11 @@ const unreadMessageRoutes = Router({
   mergeParams: true,
 });
 
-import { authMiddleware } from "#middlewares/index.js";
+import { authMiddleware } from "../../../../../middlewares/index.js";
 import {
   indexUnreadMessage,
   destroyUnreadMessage,
-} from "#controllers/index.js";
+} from "../../../../../controllers/index.js";
 
 unreadMessageRoutes.get("/", authMiddleware, indexUnreadMessage);
 

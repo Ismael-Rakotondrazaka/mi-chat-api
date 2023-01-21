@@ -1,12 +1,12 @@
-import { Conversation, Message, User } from "#models/index.js";
-import { messageResource } from "#resources/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
-import { validateMessage, createFilename } from "#utils/strings/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { uploadFile } from "#services/GCS/index.js";
-import { fileConfig } from "#configs/index.js";
+import { Conversation, Message, User } from "../../models/index.js";
+import { messageResource } from "../../resources/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { validateMessage, createFilename } from "../../utils/strings/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { uploadFile } from "../../services/GCS/index.js";
+import { fileConfig } from "../../configs/index.js";
 
 const storeMessage = async (req, res, next) => {
   try {

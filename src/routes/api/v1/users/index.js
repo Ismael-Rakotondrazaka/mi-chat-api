@@ -4,9 +4,9 @@ import {
   indexUserFriend,
   indexUser,
   showUserFile,
-} from "#controllers/index.js";
-import { authMiddleware, userMiddleware } from "#middlewares/index.js";
-import { uploadImage } from "#services/multer/index.js";
+} from "../../../../controllers/index.js";
+import { authMiddleware, userMiddleware } from "../../../../middlewares/index.js";
+import { uploadImage } from "../../../../services/multer/index.js";
 
 import { Router } from "express";
 

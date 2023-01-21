@@ -1,6 +1,6 @@
-import { userResource, friendResource, userCollection } from "#resources/index.js";
-import { User } from "#models/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { userResource, friendResource, userCollection } from "../../resources/index.js";
+import { User } from "../../models/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 import jwt from "jsonwebtoken";

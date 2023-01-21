@@ -1,4 +1,4 @@
-import { fileConfig } from "#configs/index.js";
+import { fileConfig } from "../../configs/index.js";
 import { storage } from "./storage.js";
 
 import multer from "multer";

@@ -7,15 +7,15 @@ import {
   messageMiddleware,
   authMiddleware,
   messageFileMiddleware,
-} from "#middlewares/index.js";
+} from "../../../../../middlewares/index.js";
 import {
   indexMessage,
   storeMessage,
   showMessage,
   destroyMessage,
   showMessageFile,
-} from "#controllers/index.js";
-import { uploadFile } from "#services/multer/index.js";
+} from "../../../../../controllers/index.js";
+import { uploadFile } from "../../../../../services/multer/index.js";
 
 messageRoutes.use("/:messageId", messageMiddleware);
 

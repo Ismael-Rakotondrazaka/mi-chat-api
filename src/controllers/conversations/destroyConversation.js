@@ -1,7 +1,7 @@
-import { User, Conversation, Viewer } from "#models/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User, Conversation, Viewer } from "../../models/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 

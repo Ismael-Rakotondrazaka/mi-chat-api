@@ -1,4 +1,5 @@
-import { ServerError, BadRequestError } from "#utils/errors/index.js";
+import { ServerError, BadRequestError } from "../../../utils/errors/index.js";
+
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";

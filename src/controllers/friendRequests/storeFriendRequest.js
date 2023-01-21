@@ -1,8 +1,8 @@
-import { User, FriendRequest } from "#models/index.js";
-import { friendRequestResource } from "#resources/index.js";
-import { BadRequestError, ConflictError } from "#utils/errors/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { socketIO } from "#services/socketIO/index.js";
+import { User, FriendRequest } from "../../models/index.js";
+import { friendRequestResource } from "../../resources/index.js";
+import { BadRequestError, ConflictError } from "../../utils/errors/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
 
 const storeFriendRequest = async (req, res, next) => {
   try {

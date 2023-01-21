@@ -1,11 +1,11 @@
-import { userResource } from "#resources/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { User } from "#models/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
-import { validateDescription, createFilename } from "#utils/strings/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { uploadFile } from "#services/GCS/index.js";
+import { userResource } from "../../resources/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { User } from "../../models/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
+import { validateDescription, createFilename } from "../../utils/strings/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { uploadFile } from "../../services/GCS/index.js";
 
 /* 
   description, profileImage can be updated
