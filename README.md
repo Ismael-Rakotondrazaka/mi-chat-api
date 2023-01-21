@@ -70,4 +70,5 @@ They are **not** arranged by topic or subject.
 | E4_6   | Trying to add a participant to a conversation where he is already a member        |
 | **E5** | General UnauthorizedError                                                         |
 | **E6** | General ForbiddenError                                                            |
-| E6_1   | Auth check failed                                                                 |
+| E6_1   | Authentication check failed                                                                 |
+| E6_2   | Authentication failed                                                                 |
