@@ -11,6 +11,7 @@ They are **not** arranged by topic or subject.
 | E1_1   | trying to set 'fullName' of an User model                                         |
 | E1_2   | trying to use inexistant source policy                                            |
 | E1_3   | trying to use inexistant action policy                                            |
+| E1_4   | Not implemented yet                                                               |
 | **E2** | General BadRequestError                                                           |
 | E2_1   | Field 'email' is missing                                                          |
 | E2_2   | Field 'email' is not a string                                                     |
@@ -60,6 +61,7 @@ They are **not** arranged by topic or subject.
 | E2_46  | Field 'conversationId' is in a bad format                                         |
 | E2_47  | Conversation with id 'conversationId' does not exist                              |
 | E2_48  | The file uploaded has not a valid image mimetype                                  |
+| E2_49  | Field 'database' is missing                                                       |
 | **E3** | General NotFoundError                                                             |
 | **E4** | General ConflictError                                                             |
 | E4_1   | 'email' is already in use                                                         |
@@ -70,5 +72,5 @@ They are **not** arranged by topic or subject.
 | E4_6   | Trying to add a participant to a conversation where he is already a member        |
 | **E5** | General UnauthorizedError                                                         |
 | **E6** | General ForbiddenError                                                            |
-| E6_1   | Authentication check failed                                                                 |
-| E6_2   | Authentication failed                                                                 |
+| E6_1   | Authentication check failed                                                       |
+| E6_2   | Authentication failed                                                             |
