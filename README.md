@@ -11,6 +11,7 @@ They are **not** arranged by topic or subject.
 | E1_1   | trying to set 'fullName' of an User model                                         |
 | E1_2   | trying to use inexistant source policy                                            |
 | E1_3   | trying to use inexistant action policy                                            |
+| E1_4   | Not implemented yet                                                               |
 | **E2** | General BadRequestError                                                           |
 | E2_1   | Field 'email' is missing                                                          |
 | E2_2   | Field 'email' is not a string                                                     |
@@ -70,5 +71,5 @@ They are **not** arranged by topic or subject.
 | E4_6   | Trying to add a participant to a conversation where he is already a member        |
 | **E5** | General UnauthorizedError                                                         |
 | **E6** | General ForbiddenError                                                            |
-| E6_1   | Authentication check failed                                                                 |
-| E6_2   | Authentication failed                                                                 |
+| E6_1   | Authentication check failed                                                       |
+| E6_2   | Authentication failed                                                             |

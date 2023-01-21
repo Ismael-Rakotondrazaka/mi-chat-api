@@ -43,6 +43,9 @@ app.use("/api/v1/friends", friendRoutes);
 import { conversationRoutes } from "#routes/api/v1/conversations/index.js";
 app.use("/api/v1/conversations", conversationRoutes);
 
+import { adminDatabaseRoutes } from "#routes/api/v1/admin/databases/index.js";
+app.use("/api/v1/admin/databases", adminDatabaseRoutes);
+
 app.use("/hello", (req, res, next) =>
   res.send({
     data: {
