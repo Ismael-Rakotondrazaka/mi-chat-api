@@ -1,5 +1,9 @@
 # mi-chat-api
 
+mi-chat is a free instant messaging web application. You can make friends and chat with them. You can share photos, videos or files. To chat with a group of peoples, you just need to create group chat.
+
+Live: [https://mi-chat.onrender.com](https://mi-chat.onrender.com), enjoy :wink:
+
 ## Errors
 
 ### Error code
