@@ -45,12 +45,16 @@ const login = async (req, res, next) => {
     });
 
     if (!targetUser)
-      throw new UnauthorizedError("Credential doesn't match to our record.");
+      throw new UnauthorizedError("Credential doesn't match to our records.", {
+        code: "E6_2",
+      });
 
     const isPasswordMatch = bcrypt.compareSync(password, targetUser.password);
 
     if (!isPasswordMatch)
-      throw new UnauthorizedError("Credential doesn't match to our record.");
+      throw new UnauthorizedError("Credential doesn't match to our records.", {
+        code: "E6_2",
+      });
 
     const refreshTokenData = {
       user: {
