@@ -13,6 +13,12 @@ export default (sequelize, DataTypes) => {
   }
   Friendship.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       userId: {
         type: DataTypes.INTEGER,
         field: "user_id",

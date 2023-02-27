@@ -70,6 +70,12 @@ export default (sequelize, DataTypes) => {
   }
   User.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       firstName: {
         field: "first_name",
         type: DataTypes.STRING,
