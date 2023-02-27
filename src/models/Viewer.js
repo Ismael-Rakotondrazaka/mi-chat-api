@@ -25,6 +25,12 @@ export default (sequelize, DataTypes) => {
 
   Viewer.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       messageId: {
         field: "message_id",
         type: DataTypes.INTEGER,

@@ -25,6 +25,12 @@ export default (sequelize, DataTypes) => {
   }
   Participant.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       userId: {
         field: "user_id",
         type: DataTypes.INTEGER,

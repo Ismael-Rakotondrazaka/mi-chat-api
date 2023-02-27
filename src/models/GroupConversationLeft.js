@@ -19,6 +19,12 @@ export default (sequelize, DataTypes) => {
 
   GroupConversationLeft.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       conversationId: {
         field: "conversation_id",
         type: DataTypes.INTEGER,

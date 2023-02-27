@@ -23,6 +23,12 @@ export default (sequelize, DataTypes) => {
   }
   FriendRequest.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       senderId: {
         field: "sender_id",
         type: DataTypes.INTEGER,

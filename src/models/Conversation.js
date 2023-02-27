@@ -21,6 +21,12 @@ export default (sequelize, DataTypes) => {
   }
   Conversation.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       type: {
         type: DataTypes.TEXT,
         allowNull: false,
