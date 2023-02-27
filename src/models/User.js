@@ -1,6 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
-import { ServerError } from "#utils/errors/index.js";
+import { ServerError } from "../utils/errors/index.js";
 
 export default (sequelize, DataTypes) => {
   class User extends Model {

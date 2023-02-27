@@ -1,9 +1,9 @@
-import { User, Conversation, Participant } from "#models/index.js";
-import { validateNickname } from "#utils/strings/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { BadRequestError } from "#utils/errors/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User, Conversation, Participant } from "../../models/index.js";
+import { validateNickname } from "../../utils/strings/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 /*
   if conversation is personal,

@@ -1,5 +1,5 @@
-import { Conversation } from "#models/index.js";
-import { NotFoundError } from "#utils/errors/index.js";
+import { Conversation } from "../../models/index.js";
+import { NotFoundError } from "../../utils/errors/index.js";
 
 const participantMiddleware = async (req, res, next) => {
   let { conversationId, participantId } = req.params;

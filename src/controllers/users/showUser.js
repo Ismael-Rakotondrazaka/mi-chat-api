@@ -3,9 +3,9 @@ import {
   userCollection,
   friendResource,
   friendRequestResource,
-} from "#resources/index.js";
-import { User, FriendRequest } from "#models/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+} from "../../resources/index.js";
+import { User, FriendRequest } from "../../models/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 import { Op } from "sequelize";
 import jwt from "jsonwebtoken";

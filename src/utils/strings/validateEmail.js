@@ -1,4 +1,4 @@
-import { BadRequestError } from "#utils/errors/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 import validator from "validator";
 

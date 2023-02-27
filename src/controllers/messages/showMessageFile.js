@@ -1,6 +1,6 @@
-import { Conversation, User, Message } from "#models/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { getSignedUrl } from "#services/GCS/index.js";
+import { Conversation, User, Message } from "../../models/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { getSignedUrl } from "../../services/GCS/index.js";
 
 import { contentType } from "mime-types";
 

@@ -1,7 +1,7 @@
-import { User, Message, Conversation } from "#models/index.js";
-import { socketIO } from "#services/socketIO/index.js";
-import { isAuthorizedTo } from "#policies/index.js";
-import { createDataResponse } from "#utils/responses/index.js";
+import { User, Message, Conversation } from "../../models/index.js";
+import { socketIO } from "../../services/socketIO/index.js";
+import { isAuthorizedTo } from "../../policies/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 
 const destroyMessage = async (req, res, next) => {
   try {

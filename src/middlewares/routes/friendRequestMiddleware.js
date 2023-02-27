@@ -1,5 +1,5 @@
-import { FriendRequest } from "#models/index.js";
-import { NotFoundError } from "#utils/errors/index.js";
+import { FriendRequest } from "../../models/index.js";
+import { NotFoundError } from "../../utils/errors/index.js";
 
 const friendRequestMiddleware = async (req, res, next) => {
   try {

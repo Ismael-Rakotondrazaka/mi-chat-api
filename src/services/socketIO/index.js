@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { authMiddleware } from "#middlewares/index.js";
+import { authMiddleware } from "../../middlewares/index.js";
 import { connectHandler } from "./connectHandler.js";
 
 import { Server } from "socket.io";

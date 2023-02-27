@@ -1,4 +1,4 @@
-import { createDataResponse } from "#utils/responses/index.js";
+import { createDataResponse } from "../../utils/responses/index.js";
 import { joinDefaultRooms } from "./joinDefaultRooms.js";
 import { joinRoomHandler } from "./joinRoomHandler.js";
 import { leaveRoomHandler } from "./leaveRoomHandler.js";

@@ -1,5 +1,5 @@
-import { BadRequestError } from "#utils/errors/index.js";
-import { userConfig } from "#configs/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
+import { userConfig } from "../../configs/index.js";
 
 const validateDescription = (description) => {
   if (typeof description !== "string")

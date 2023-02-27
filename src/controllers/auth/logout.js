@@ -1,5 +1,5 @@
-import { BadRequestError, UnauthorizedError } from "#utils/errors/index.js";
-import { RefreshToken } from "#models/index.js";
+import { BadRequestError, UnauthorizedError } from "../../utils/errors/index.js";
+import { RefreshToken } from "../../models/index.js";
 
 const logout = async (req, res, next) => {
   try {

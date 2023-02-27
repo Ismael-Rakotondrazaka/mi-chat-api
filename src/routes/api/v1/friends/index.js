@@ -1,5 +1,5 @@
-import { indexFriend, destroyFriend } from "#controllers/index.js";
-import { authMiddleware, userMiddleware } from "#middlewares/index.js";
+import { indexFriend, destroyFriend } from "../../../../controllers/index.js";
+import { authMiddleware, userMiddleware } from "../../../../middlewares/index.js";
 
 import { Router } from "express";
 

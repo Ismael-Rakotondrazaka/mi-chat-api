@@ -1,14 +1,14 @@
 import { Router } from "express";
 const friendRequestRoutes = Router();
 
-import { friendRequestMiddleware, authMiddleware } from "#middlewares/index.js";
+import { friendRequestMiddleware, authMiddleware } from "../../../../middlewares/index.js";
 
 import {
   indexFriendRequest,
   storeFriendRequest,
   destroyFriendRequest,
   updateFriendRequest,
-} from "#controllers/index.js";
+} from "../../../../controllers/index.js";
 
 friendRequestRoutes.use("/:friendRequestId", friendRequestMiddleware);
 

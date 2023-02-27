@@ -1,5 +1,5 @@
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
-import { errorConfig } from "#configs/index.js";
+import { errorConfig } from "../../configs/index.js";
 
 export class GeneralError extends Error {
   #private;

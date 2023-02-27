@@ -1,6 +1,6 @@
-import { imageConfig } from "#configs/index.js";
+import { imageConfig } from "../../configs/index.js";
 import { storage } from "./storage.js";
-import { BadRequestError } from "#utils/errors/index.js";
+import { BadRequestError } from "../../utils/errors/index.js";
 
 import multer from "multer";
 

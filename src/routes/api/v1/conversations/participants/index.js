@@ -3,14 +3,17 @@ const participantRoutes = Router({
   mergeParams: true,
 });
 
-import { participantMiddleware, authMiddleware } from "#middlewares/index.js";
+import {
+  participantMiddleware,
+  authMiddleware,
+} from "../../../../../middlewares/index.js";
 import {
   indexParticipant,
   showParticipant,
   storeParticipant,
   destroyParticipant,
   updateParticipant,
-} from "#controllers/index.js";
+} from "../../../../../controllers/index.js";
 
 participantRoutes.use("/:participantId", participantMiddleware);
 
