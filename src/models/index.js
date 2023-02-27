@@ -27,9 +27,13 @@ if (dbConnection === "sqlite") {
 } else {
   const dbUser = process.env.DB_USER;
   const dbPassword = process.env.DB_PASSWORD;
+  const dbHost = process.env.DB_HOST;
+  const dbPort = process.env.DB_PORT;
 
   sequelize = new Sequelize(dbName, dbUser, dbPassword, {
     dialect: dbConnection,
+    host: dbHost,
+    port: dbPort,
     logging: logging,
     sync: true,
   });
