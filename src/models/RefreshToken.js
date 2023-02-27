@@ -17,6 +17,12 @@ export default (sequelize, DataTypes) => {
   }
   RefreshToken.init(
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+      },
       token: {
         field: "token",
         type: DataTypes.STRING,
