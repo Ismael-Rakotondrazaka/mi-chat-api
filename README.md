@@ -1,9 +1,54 @@
 # mi-chat-api
 
-## Errors
+mi-chat is a free instant messaging web application. You can make friends and chat with them. You can share photos, videos or files. To chat with a group of peoples, you just need to create group chat.
 
-### Error code
-They are **not** arranged by topic or subject.
+Live: [https://mi-chat.onrender.com](https://mi-chat.onrender.com), enjoy :wink:
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Production mode
+
+```sh
+npm run start
+```
+
+## Responses
+There are two types of responses with this api: **data** and **error**
+
+### Data
+```js
+data: {
+    user: {
+        id: 1,
+        ...
+    },
+    ...
+}
+```
+
+### Error
+```js
+error: {
+    message: "The resource is not found.",
+    statusCode: 400,
+    statusText: "Not Found",
+    code: "E3",
+    dateTime: "2023-01-21T16:47:21.886Z",
+}
+```
+
+### Error codes
+They are **NOT** arranged by topic or subject.
 | code   | Description                                                                       |
 | ------ | --------------------------------------------------------------------------------- |
 | **E0** | General UnknownError                                                              |
