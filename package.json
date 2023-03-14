@@ -7,7 +7,7 @@
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "@google-cloud/storage": "^6.9.3",
+    "@google-cloud/storage": "^6.9.4",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -19,13 +19,13 @@
     "nanoid": "^3.3.4",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.29.0",
+    "sequelize": "^6.29.3",
     "socket.io": "^4.6.1",
-    "sqlite3": "^5.1.4",
+    "sqlite3": "^5.1.6",
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "sequelize-cli": "^6.6.0"
   }
 }
