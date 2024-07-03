@@ -17,6 +17,7 @@ const dbConnection = process.env.DB_CONNECTION;
 const appEnv = process.env.APP_ENV;
 const logging = appEnv === "development" ? console.log : false;
 const dbName = process.env.DB_NAME;
+const dbUrl = process.env.DB_URL;
 
 if (dbConnection === "sqlite") {
   sequelize = new Sequelize({
@@ -25,18 +26,7 @@ if (dbConnection === "sqlite") {
     logging: logging,
   });
 } else {
-  const dbUser = process.env.DB_USER;
-  const dbPassword = process.env.DB_PASSWORD;
-  const dbHost = process.env.DB_HOST;
-  const dbPort = process.env.DB_PORT;
-
-  sequelize = new Sequelize(dbName, dbUser, dbPassword, {
-    dialect: dbConnection,
-    host: dbHost,
-    port: dbPort,
-    logging: logging,
-    sync: true,
-  });
+  sequelize = new Sequelize(dbUrl);
 }
 
 import createUserModel from "./User.js";
